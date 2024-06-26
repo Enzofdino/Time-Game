@@ -9,7 +9,10 @@ public class FreezeTime : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T)==true)
+        if (Input.GetKeyDown(KeyCode.T) == true)
+        {
+            Debug.Log("T pressionado");   
+        }
     }
 
 }

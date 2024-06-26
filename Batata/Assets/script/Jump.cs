@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
-    public float jumpForce = 10f;  // Force applied when jumping
+    public float jumpForce = 15f;  // Force applied when jumping
     private bool isGrounded;       // Check if the player is on the ground
     private Rigidbody2D rb;        // Reference to the Rigidbody2D component
     //static public GameManager instance;
@@ -19,6 +19,13 @@ public class Jump : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            jumpForce = (jumpForce == 15) ? 25 : 15;
+            Debug.Log(jumpForce);
+            
+        }
+
         // Check if the player is pressing the jump key (space bar) and is grounded
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true)
         {

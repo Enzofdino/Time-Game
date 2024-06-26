@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Contador : MonoBehaviour
@@ -16,76 +15,88 @@ public class Contador : MonoBehaviour
     int ano;
     [SerializeField]
     TextMeshProUGUI tempo;
+    int tickLog = 250;
+    public static bool isTimeFrozen = false; // Flag to indicate if time is frozen
 
     public void Start()
     {
         segundo = 0;
-        minuto = 59;
-        hora = 22;
+        minuto = 0;
+        hora = 0;
         tick = 0;
-        dia = 31  ;
-        mes = 12;
+        dia = 0;
+        mes = 1;
         ano = 0;
     }
 
     public void Update()
     {
-        if (tick < 1)
+        if (Input.GetKeyDown(KeyCode.G))
         {
-            tick = tick + 1;
-        }
-        else if (tick == 1)
-        {
-            segundo = segundo + 1;
-            tick = 0;
+            tickLog = (tickLog == 250) ? 25 : 250;
+            Debug.Log("tickLog value: " + tickLog);
         }
 
-        if (segundo == 60)
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            minuto = minuto + 1;
-            segundo = 0;
+            isTimeFrozen = !isTimeFrozen;
+            Debug.Log("Ticking: " + !isTimeFrozen);
         }
 
-        if (minuto == 60)
+        if (!isTimeFrozen)
         {
-            hora = hora + 1;
-            minuto = 0;
-        }
+            if (tick < tickLog)
+            {
+                tick++;
+            }
+            else
+            {
+                segundo++;
+                tick = 0;
+            }
 
-        if (hora == 24)
-        {
-            dia = dia + 1;
-            tDia = tDia + 1;
-            hora = 0;
-        }
+            if (segundo == 1)
+            {
+                minuto++;
+                segundo = 0;
+            }
 
-        int diasNoMes = GetDiasNoMes(mes, ano);
+            if (minuto == 1)
+            {
+                hora++;
+                minuto = 0;
+            }
 
-        if (dia > diasNoMes)
-        {
-            dia = 1;
-            mes = mes + 1;
+            if (hora == 1)
+            {
+                dia++;
+                tDia++;
+                hora = 0;
+            }
+
+            int diasNoMes = GetDiasNoMes(mes, ano);
+
+            if (dia > diasNoMes)
+            {
+                dia = 1;
+                mes++;
+            }
 
             if (mes > 12)
             {
                 mes = 1;
-                ano = ano + 1;
+                ano++;
             }
-        }
-        if (mes == 13)
-        {
-            mes = 1;
-            ano = ano + 1;
-        }
 
-        string formattedHora = hora.ToString("D2");
-        string formattedMinuto = minuto.ToString("D2");
-        string formattedSegundo = segundo.ToString("D2");
-        string formattedDia = dia.ToString("D2");
-        string formattedMes = mes.ToString("D2");
-        string formattedAno = ano.ToString("D2");
-
-        tempo.text = $"A tempo é {formattedAno}:{formattedMes}:{formattedDia}:{formattedHora}:{formattedMinuto}:{formattedSegundo}";
+            string formattedHora = hora.ToString("D2");
+            string formattedMinuto = minuto.ToString("D2");
+            string formattedSegundo = segundo.ToString("D2");
+            string formattedDia = dia.ToString("D2");
+            string formattedMes = mes.ToString("D2");
+            string formattedAno = ano.ToString("D2");
+            //:{formattedHora}:{formattedMinuto}:{formattedSegundo}
+            tempo.text = $"O tempo é {formattedAno}:{formattedMes}:{formattedDia}";
+        }
     }
 
     int GetDiasNoMes(int mes, int ano)
@@ -106,15 +117,7 @@ public class Contador : MonoBehaviour
             case 11: // Novembro
                 return 30;
             case 2: // Fevereiro
-                // Verifica se o ano é bissexto
-                if (IsLeapYear(ano))
-                {
-                    return 29;
-                }
-                else
-                {
-                    return 28;
-                }
+                return IsLeapYear(ano) ? 29 : 28;
             default:
                 throw new System.ArgumentOutOfRangeException("Mês inválido");
         }
@@ -122,7 +125,6 @@ public class Contador : MonoBehaviour
 
     bool IsLeapYear(int ano)
     {
-        // Ano é bissexto se for divisível por 4 e (não divisível por 100 ou divisível por 400)
         return (ano % 4 == 0) && (ano % 100 != 0 || ano % 400 == 0);
     }
 }

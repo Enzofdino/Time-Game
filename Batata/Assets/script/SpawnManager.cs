@@ -1,120 +1,87 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
-public class StructureSpawner : MonoBehaviour
+public class SpawnManager : MonoBehaviour
 {
-    public enum Era
+    [SerializeField]
+    GameObject[] structurePrim;
+    [SerializeField]
+    GameObject[] structureMed;
+    [SerializeField]
+    GameObject[] structureCont;
+    [SerializeField]
+    GameObject[] structureMod;
+
+    bool stPrim;
+    bool stMed;
+    bool stCont;
+    bool stMod;
+    GameObject structure;
+
+    private void Start()
     {
-        Prehistoric,
-        Medieval,
-        Contemporary,
-        Modern
+        stPrim = true;
+        stMed = false;
+        stCont = false;
+        stMod = false;
+
     }
-
-    public Era currentEra = Era.Prehistoric;
-
-    public GameObject[] prehistoricStructures;
-    public GameObject[] medievalStructures;
-    public GameObject[] contemporaryStructures;
-    public GameObject[] modernStructures;
-
-    public Vector3 spawnAreaCenter;
-    public Vector3 spawnAreaSize;
-
-    public LayerMask groundLayer; // Layer mask for ground objects
-
-    void Start()
+    private void Update()
     {
-        SpawnStructures();
-    }
-
-    void Update()
-    {
-        // Example: Switch era with keyboard input for testing
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if ((Contador.instance.era == "PréHistórica")&&(stPrim == true))
         {
-            currentEra = Era.Prehistoric;
-            SpawnStructures();
+            structure = Instantiate(structurePrim[0]);
+            stPrim = false;
+            stMed = true;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            currentEra = Era.Medieval;
-            SpawnStructures();
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            currentEra = Era.Contemporary;
-            SpawnStructures();
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            currentEra = Era.Modern;
-            SpawnStructures();
-        }
-    }
-
-    void SpawnStructures()
-    {
-        ClearPreviousStructures();
-
-        switch (currentEra)
-        {
-            case Era.Prehistoric:
-                SpawnPrefabArray(prehistoricStructures);
-                break;
-            case Era.Medieval:
-                SpawnPrefabArray(medievalStructures);
-                break;
-            case Era.Contemporary:
-                SpawnPrefabArray(contemporaryStructures);
-                break;
-            case Era.Modern:
-                SpawnPrefabArray(modernStructures);
-                break;
-            default:
-                Debug.LogError("Unknown era selected.");
-                break;
-        }
-    }
-
-    void SpawnPrefabArray(GameObject[] prefabArray)
-    {
-        foreach (GameObject structure in prefabArray)
-        {
-            Vector3 spawnPosition = GetGroundedSpawnPosition();
-            Instantiate(structure, spawnPosition, Quaternion.identity);
-        }
-    }
-
-    void ClearPreviousStructures()
-    {
-        // Implement clearing of previously spawned structures if needed
-        // Example: Destroy existing structure game objects
-        GameObject[] existingStructures = GameObject.FindGameObjectsWithTag("Structure");
-        foreach (GameObject structure in existingStructures)
+        if ((Contador.instance.era == "Medieval")&& (stMed == true))
         {
             Destroy(structure);
+            structure = Instantiate(structureMed[0]);
+            stMed = false;
+            stCont = true;
         }
+        if ((Contador.instance.era == "Contemporânea")&&(stCont == true))
+        {
+            Destroy(structure);
+            structure = Instantiate(structureCont[0]);
+            stCont = false;
+            stMod = true;
+        }
+        if ((Contador.instance.era== "Moderna")&&(stMod == true))
+        {
+            Destroy(structure);
+            structure = Instantiate(structureMod[0]);
+            stMod = false;
+        }
+
+
+
+
+
     }
 
-    Vector3 GetGroundedSpawnPosition()
-    {
-        Vector3 spawnPosition = Vector3.zero;
+    //identificar cada prefab para cada era (FEITO)
 
-        RaycastHit hit;
-        if (Physics.Raycast(spawnAreaCenter, Vector3.down, out hit, Mathf.Infinity, groundLayer))
-        {
-            spawnPosition = hit.point;
-        }
-        else
-        {
-            Debug.LogWarning("Failed to find ground. Defaulting to spawn area center.");
-            spawnPosition = spawnAreaCenter;
-        }
 
-        return spawnPosition;
-    }
+    //definir uma área para gerar o prefab  (A FAZER)
 
-    // Additional methods for adjusting spawn area, handling collisions, etc.
+
+    //instanciar o prefab, dentro da área definida, apenas se não houver outro prefab na área (A FAZER)
+
+
+    //checar se o boxcolider dos prefabs estão distantes um do outro (A FAZER)
+
+
+    //verificar se a boxcolider esta em contato com o chão (A FAZER)
+
+
+    //caso o prefab gere dentro do chão, destruir ele (A FAZER)
+
+
+    //ao mudar de era, substituir os prefabs pelos prefabs da era seguinte (FEITO)
 }

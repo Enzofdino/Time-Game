@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Contador : MonoBehaviour
 {
+    
     int tick;
     public int hora;
     int minuto;
@@ -12,11 +13,22 @@ public class Contador : MonoBehaviour
     int dia;
     int tDia;
     int mes;
-    int ano;
+    public int ano;
     [SerializeField]
     TextMeshProUGUI tempo;
+    [SerializeField]
+    TextMeshProUGUI epoca;
     int tickLog = 250;
-    public static bool isTimeFrozen = false; // Flag to indicate if time is frozen
+    public static bool isTimeFrozen = false;
+    public string era;
+
+    #region 
+    public static Contador instance;
+    private void Awake()
+    {
+        instance = this;
+    }
+    #endregion
 
     public void Start()
     {
@@ -25,12 +37,27 @@ public class Contador : MonoBehaviour
         hora = 0;
         tick = 0;
         dia = 0;
-        mes = 1;
-        ano = 0;
-    }
-
+        mes = 11;
+        ano = 9;
+        era = "PréHistórica";
+        
+    }        
     public void Update()
     {
+        if (ano == 10)
+        {
+            era = "Medieval";
+        }
+        if (ano == 20)
+        {
+            era = "Contemporânea";
+        }
+        if (ano == 30)
+        {
+            era = "Moderna";
+        }
+        
+
         if (Input.GetKeyDown(KeyCode.G))
         {
             tickLog = (tickLog == 250) ? 25 : 250;
@@ -96,6 +123,7 @@ public class Contador : MonoBehaviour
             string formattedAno = ano.ToString("D2");
             //:{formattedHora}:{formattedMinuto}:{formattedSegundo}
             tempo.text = $"O tempo é {formattedAno}:{formattedMes}:{formattedDia}";
+            epoca.text = $"Era {era}";
         }
     }
 
@@ -127,4 +155,10 @@ public class Contador : MonoBehaviour
     {
         return (ano % 4 == 0) && (ano % 100 != 0 || ano % 400 == 0);
     }
+
+    
+
+
+
+
 }

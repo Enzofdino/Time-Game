@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -22,6 +21,16 @@ public class SpawnManager : MonoBehaviour
     bool stMod;
     GameObject structure;
 
+    int stuPrim;
+    int stuMed;
+    int stuCont;
+    int stuMod;
+
+    int contPrim;
+    int contMed;
+    int contMod;
+    int contCont;
+
     private void Start()
     {
         stPrim = true;
@@ -29,33 +38,50 @@ public class SpawnManager : MonoBehaviour
         stCont = false;
         stMod = false;
 
+        contPrim = 0;
+        contMed = 0;
+        contCont = 0;
+        contMod = 0;
+
+        stuPrim = Random.Range(4, 10);
+        stuMed = Random.Range(4, 10);
+        stuCont = Random.Range(4, 10);
+        stuMod = Random.Range(4, 10);
     }
     private void Update()
     {
-        if ((Contador.instance.era == "PréHistórica")&&(stPrim == true))
+        if ((Contador.instance.era == "PréHistórica") && (stPrim == true)&&(contPrim != stuPrim))
         {
-            structure = Instantiate(structurePrim[0]);
-            stPrim = false;
+
+                do
+                {
+                    structure = Instantiate(structurePrim[0], new Vector3(Random.Range(31, 104), 0f, 0f), Quaternion.identity);
+
+                    contPrim = contPrim + 1;
+                }
+                while (contPrim != stuPrim);
             stMed = true;
+
+
         }
         if ((Contador.instance.era == "Medieval")&& (stMed == true))
         {
             Destroy(structure);
-            structure = Instantiate(structureMed[0]);
+            structure = Instantiate(structureMed[0], new Vector3(Random.Range(31, 104), 0f, 0f), Quaternion.identity);
             stMed = false;
             stCont = true;
         }
         if ((Contador.instance.era == "Contemporânea")&&(stCont == true))
         {
             Destroy(structure);
-            structure = Instantiate(structureCont[0]);
+            structure = Instantiate(structureCont[0], new Vector3(Random.Range(31, 104), 0f, 0f), Quaternion.identity);
             stCont = false;
             stMod = true;
         }
         if ((Contador.instance.era== "Moderna")&&(stMod == true))
         {
             Destroy(structure);
-            structure = Instantiate(structureMod[0]);
+            structure = Instantiate(structureMod[0], new Vector3(Random.Range(31, 104), 0f, 0f), Quaternion.identity);
             stMod = false;
         }
 

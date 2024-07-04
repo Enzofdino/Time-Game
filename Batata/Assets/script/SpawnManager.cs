@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -65,8 +66,15 @@ public class SpawnManager : MonoBehaviour
         {
 
             do
-            {
-                structure = Instantiate(structurePrim[0], new Vector3(Random.Range(31, 104), 0f, 0f), Quaternion.identity);
+            {  
+                int lugar = 0;
+                bool collider = true;
+                while (collider)
+                {
+                    lugar = Random.Range(31, 104);
+                    collider = Physics2D.OverlapBox(new Vector2(lugar, 0f), new Vector2(6.17f, 3.81f), 0);
+                }
+                structure = Instantiate(structurePrim[0], new Vector3(lugar, 0f, 0f), Quaternion.identity);
                 spawnedPrimStructures[contPrim] = structure;
                 contPrim++;
             }
@@ -81,7 +89,14 @@ public class SpawnManager : MonoBehaviour
             DestroyAllPrimStructures();
             do
             {
-                structure = Instantiate(structureMed[0], new Vector3(Random.Range(31, 104), 0f, 0f), Quaternion.identity);
+                int lugar = 0;
+                bool collider = true;
+                while (collider)
+                {
+                    lugar = Random.Range(31, 104);
+                    collider = Physics2D.OverlapBox(new Vector2(lugar, 0f), new Vector2(7.86f, 7.05f), 0);
+                }
+                structure = Instantiate(structureMed[0], new Vector3(lugar, 0f, 0f), Quaternion.identity);
                 spawnedMedStructures[contMed] = structure;
                 contMed++;
             }
@@ -94,7 +109,14 @@ public class SpawnManager : MonoBehaviour
             DestroyAllMedStructures();
             do
             {
-                structure = Instantiate(structureCont[0], new Vector3(Random.Range(31, 104), 0f, 0f), Quaternion.identity);
+                int lugar = 0;
+                bool collider = true;
+                while (collider)
+                {
+                    lugar = Random.Range(31, 104);
+                    collider = Physics2D.OverlapBox(new Vector2(lugar, 0f), new Vector2(8.9f, 10f), 0);
+                }
+                structure = Instantiate(structureCont[0], new Vector3(lugar, 0f, 0f), Quaternion.identity);
                 spawnedContStructures[contCont] = structure;
                 contCont++;
             }
@@ -107,7 +129,14 @@ public class SpawnManager : MonoBehaviour
             DestroyAllContStructures();
             do
             {
-                structure = Instantiate(structureMod[0], new Vector3(Random.Range(31, 104), 0f, 0f), Quaternion.identity);
+                int lugar = 0;
+                bool collider = true;
+                while (collider)
+                {
+                    lugar = Random.Range(31, 104);
+                    collider = Physics2D.OverlapBox(new Vector2(lugar, 0f), new Vector2(8.2f, 19.1f), 0);
+                }
+                structure = Instantiate(structureMod[0], new Vector3(lugar, 0f, 0f), Quaternion.identity);
                 spawnedModStructures[contMod] = structure;
                 contMod++;
             }

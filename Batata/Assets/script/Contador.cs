@@ -48,11 +48,11 @@ public class Contador : MonoBehaviour
         {
             era = "Medieval";
         }
-        if (ano == 20)
+        if (ano == 11)
         {
             era = "Contemporânea";
         }
-        if (ano == 30)
+        if (ano == 12)
         {
             era = "Moderna";
         }

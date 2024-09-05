@@ -3,7 +3,11 @@ guid: 99a5f15c94c9c5940a7be5959cef4a06
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - stPrimitiva: {fileID: 1611392909538483647, guid: 7b919b59f5f6b5a4abe180e6dcb2207d, type: 3}
+  - stMedieval: {fileID: 5478113416706620754, guid: 0a118ce00f0281245899cb1af987c8fe, type: 3}
+  - stContemporanea: {fileID: 8042024099355251546, guid: b22b95b4d54ff9b4abf43e1055d8814d, type: 3}
+  - stModerna: {fileID: 1675363403079792538, guid: 78872cbad9a34fd488787774c23ed212, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -22,7 +22,7 @@ public class player : MonoBehaviour
         direction = Input.GetAxis("Horizontal");
 
         Move();
-        FlipSprite();
+        //FlipSprite();
 
     }
 
@@ -31,17 +31,15 @@ public class player : MonoBehaviour
         rb.velocity = new Vector2(direction * speed, rb.velocity.y);
     }
 
-    void FlipSprite()
-    {
-        if (direction < 0)
-        {
-            transform.localScale = new Vector3(-0.4977f, 0.4977f, 0.4977f);
-        }
-        else if (direction > 0)
-        {
-            transform.localScale = new Vector3(0.4977f, 0.4977f, 0.4977f);
-        }
-    }
-
-    
+    //void FlipSprite()
+    //{
+    //    if (direction < 0)
+    //    {
+    //        transform.localScale = new Vector3(-0.4977f, 0.4977f, 0.4977f);
+    //    }
+    //    else if (direction > 0)
+    //    {
+    //        transform.localScale = new Vector3(0.4977f, 0.4977f, 0.4977f);
+    //    }
+    //}   
 }

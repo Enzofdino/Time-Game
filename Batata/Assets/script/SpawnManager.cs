@@ -1,208 +1,125 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
+using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField]
-    GameObject[] structurePrim;
-    [SerializeField]
-    GameObject[] structureMed;
-    [SerializeField]
-    GameObject[] structureCont;
-    [SerializeField]
-    GameObject[] structureMod;
+    #region singleton
+    bool spawnPrimitivo = true;
+    bool spawnMedieval = true;
+    bool spawnContemporaneo = true;
+    bool spawnModerno = true;
+    #endregion
+    public GameObject[] primitivePrefabs;
+    public GameObject[] medievalPrefabs;
+    public GameObject[] contemporaryPrefabs;
+    public GameObject[] modernPrefabs;
 
-    bool stPrim;
-    bool stMed;
-    bool stCont;
-    bool stMod;
+    // Current array being used for instantiation
+    private GameObject[] currentPrefabArray;
+    private GameObject[] spawnedInstances;
 
-    GameObject structure;
+    // Number of instances will be set randomly between 4 and 8
+    private int numberOfInstances;
 
-    int stuPrim;
-    int stuMed;
-    int stuCont;
-    int stuMod;
+    // Round counter
+    private int currentRound = 0;
 
-    int contPrim;
-    int contMed;
-    int contMod;
-    int contCont;
-
-    private GameObject[] spawnedPrimStructures;
-    private GameObject[] spawnedMedStructures;
-    private GameObject[] spawnedContStructures;
-    private GameObject[] spawnedModStructures;
-
-    private void Start()
+    void Start()
     {
-        stPrim = true;
-        stMed = false;
-        stCont = false;
-        stMod = false;
-
-        contPrim = 0;
-        contMed = 0;
-        contCont = 0;
-        contMod = 0;
-
-        stuPrim = Random.Range(4, 10);
-        stuMed = Random.Range(4, 10);
-        stuCont = Random.Range(4, 10);
-        stuMod = Random.Range(4, 10);
-
-        spawnedPrimStructures = new GameObject[stuPrim];
-        spawnedMedStructures = new GameObject[stuMed];
-        spawnedContStructures = new GameObject[stuCont];
-        spawnedModStructures = new GameObject[stuMod];
+        // Start with the first array of prefabs (primitive)
+        currentPrefabArray = primitivePrefabs;
+        InstantiateObjects();
     }
-    private void Update()
+
+    void Update()
+
+
     {
-        if ((Contador.instance.era == "PréHistórica") && (stPrim == true) && (contPrim != stuPrim))
+        // Press 'D' to destroy current instances and move to the next round
+        if (Contador.instance.ano == 10 && spawnMedieval == true)
         {
-
-            do
-            {  
-                int lugar = 0;
-                bool collider = true;
-                while (collider)
-                {
-                    lugar = Random.Range(31, 104);
-                    collider = Physics2D.OverlapBox(new Vector2(lugar, 0f), new Vector2(6.17f, 3.81f), 0);
-                }
-                structure = Instantiate(structurePrim[0], new Vector3(lugar, 0f, 0f), Quaternion.identity);
-                spawnedPrimStructures[contPrim] = structure;
-                contPrim++;
-            }
-            while (contPrim != stuPrim);
-            stMed = true;
-            stPrim = false;
-
-
+            DestroyAllInstances();
+            NextRound();
+            spawnMedieval = false;
         }
-        if ((Contador.instance.era == "Medieval") && (stMed == true) && (contMed != stuMed))
+        if (Contador.instance.ano == 11)
         {
-            DestroyAllPrimStructures();
-            do
-            {
-                int lugar = 0;
-                bool collider = true;
-                while (collider)
-                {
-                    lugar = Random.Range(31, 104);
-                    collider = Physics2D.OverlapBox(new Vector2(lugar, 0f), new Vector2(7.86f, 7.05f), 0);
-                }
-                structure = Instantiate(structureMed[0], new Vector3(lugar, 0f, 0f), Quaternion.identity);
-                spawnedMedStructures[contMed] = structure;
-                contMed++;
-            }
-            while (contMed != stuMed);
-            stMed = false;
-            stCont = true;
+            DestroyAllInstances();
+            NextRound();
+            spawnContemporaneo = false;
         }
-        if ((Contador.instance.era == "Contemporânea") && (stCont == true) && (contCont != stuCont))
+        if (Contador.instance.ano == 12)
         {
-            DestroyAllMedStructures();
-            do
-            {
-                int lugar = 0;
-                bool collider = true;
-                while (collider)
-                {
-                    lugar = Random.Range(31, 104);
-                    collider = Physics2D.OverlapBox(new Vector2(lugar, 0f), new Vector2(8.9f, 10f), 0);
-                }
-                structure = Instantiate(structureCont[0], new Vector3(lugar, 0f, 0f), Quaternion.identity);
-                spawnedContStructures[contCont] = structure;
-                contCont++;
-            }
-            while (contCont != stuCont);
-            stCont = false;
-            stMod = true;
-        }
-        if ((Contador.instance.era == "Moderna") && (stMod == true) && (contMod != stuMod))
-        {
-            DestroyAllContStructures();
-            do
-            {
-                int lugar = 0;
-                bool collider = true;
-                while (collider)
-                {
-                    lugar = Random.Range(31, 104);
-                    collider = Physics2D.OverlapBox(new Vector2(lugar, 0f), new Vector2(8.2f, 19.1f), 0);
-                }
-                structure = Instantiate(structureMod[0], new Vector3(lugar, 0f, 0f), Quaternion.identity);
-                spawnedModStructures[contMod] = structure;
-                contMod++;
-            }
-            while (contMod != stuMod);
-            stMod = false;
+            DestroyAllInstances();
+            NextRound();
+            spawnModerno =false;
         }
     }
-        private void DestroyAllPrimStructures()
+
+    void InstantiateObjects()
+    {
+        // Set the number of instances to a random value between 4 and 8
+        numberOfInstances = Random.Range(4, 9);
+
+        // Initialize the spawnedInstances array based on the random number of instances
+        spawnedInstances = new GameObject[numberOfInstances];
+
+        // Instantiate prefabs from the currentPrefabArray
+        for (int i = 0; i < numberOfInstances; i++)
         {
-            for (int i = 0; i < contPrim; i++)
+            // Randomly select a prefab from the currentPrefabArray
+            int randomIndex = Random.Range(0, currentPrefabArray.Length);
+
+            // Instantiate at a random position
+            GameObject instance = Instantiate(currentPrefabArray[randomIndex],
+                                              new Vector3(Random.Range(38.61f, 106.8f), -1.61f, 1f), quaternion.identity);
+
+            // Store the instance in the spawnedInstances array
+            spawnedInstances[i] = instance;
+        }
+    }
+
+    void DestroyAllInstances()
+    {
+        // Destroy all objects in the current round
+        for (int i = 0; i < spawnedInstances.Length; i++)
+        {
+            if (spawnedInstances[i] != null)
             {
-                Destroy(spawnedPrimStructures[i]);
+                Destroy(spawnedInstances[i]);
+                spawnedInstances[i] = null;
             }
-            contPrim = 0;
+        }
+    }
+
+    void NextRound()
+    {
+        // Increment the round counter
+        currentRound++;
+
+        // Switch to the next array based on the round in the specified order
+        if (currentRound == 1)
+        {
+            currentPrefabArray = medievalPrefabs;  // Switch to medieval prefabs
+        }
+        else if (currentRound == 2)
+        {
+            currentPrefabArray = contemporaryPrefabs;  // Switch to contemporary prefabs
+        }
+        else if (currentRound == 3)
+        {
+            currentPrefabArray = modernPrefabs;    // Switch to modern prefabs
+        }
+        else
+        {
+            currentRound = 0; // Loop back to the first round (primitive)
+            currentPrefabArray = primitivePrefabs;
         }
 
-        private void DestroyAllMedStructures()
-        {
-            for (int i = 0; i < contMed; i++)
-            {
-                Destroy(spawnedMedStructures[i]);
-            }
-            contMed = 0;
-        }
-
-        private void DestroyAllContStructures()
-        {
-            for (int i = 0; i < contCont; i++)
-            {
-                Destroy(spawnedContStructures[i]);
-            }
-            contCont = 0;
-        }
-
-        private void DestroyAllModStructures()
-        {
-            for (int i = 0; i < contMod; i++)
-            {
-                Destroy(spawnedModStructures[i]);
-            }
-            contMod = 0;
-        }
-    }       
-
-
-
-
-
-
-    //identificar cada prefab para cada era (FEITO)
-
-
-    //definir uma área para gerar o prefab  (Feito)
-
-
-    //instanciar o prefab, dentro da área definida, apenas se não houver outro prefab na área (A FAZER)
-
-
-    //checar se o boxcolider dos prefabs estão distantes um do outro (A FAZER)
-
-
-    //verificar se a boxcolider esta em contato com o chão (A FAZER)
-
-
-    //caso o prefab gere dentro do chão, destruir ele (A FAZER)
-
-
-    //ao mudar de era, substituir os prefabs pelos prefabs da era seguinte (FEITO)
-
+        // Instantiate objects for the next round
+        InstantiateObjects();
+    }
+}

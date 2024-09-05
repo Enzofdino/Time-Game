@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3109225776696213940}
   - component: {fileID: 5553402159007282568}
   - component: {fileID: 2044599433461546540}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: casa era 4 (1)
   m_TagString: Structure
   m_Icon: {fileID: 0}

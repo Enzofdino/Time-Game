@@ -27,6 +27,8 @@ public class SpawnManager : MonoBehaviour
     // Round counter
     private int currentRound = 0;
 
+    float heightPoss = -1.65f;
+
     void Start()
     {
         // Start with the first array of prefabs (primitive)
@@ -45,13 +47,13 @@ public class SpawnManager : MonoBehaviour
             NextRound();
             spawnMedieval = false;
         }
-        if (Contador.instance.ano == 11)
+        if (Contador.instance.ano == 11 && spawnContemporaneo == true)
         {
             DestroyAllInstances();
             NextRound();
             spawnContemporaneo = false;
         }
-        if (Contador.instance.ano == 12)
+        if (Contador.instance.ano == 12 && spawnModerno == true)
         {
             DestroyAllInstances();
             NextRound();
@@ -75,13 +77,12 @@ public class SpawnManager : MonoBehaviour
 
             // Instantiate at a random position
             GameObject instance = Instantiate(currentPrefabArray[randomIndex],
-                                              new Vector3(Random.Range(38.61f, 106.8f), -1.61f, 1f), quaternion.identity);
+                                              new Vector3(Random.Range(38.61f, 106.8f), heightPoss , 1f), quaternion.identity);
 
             // Store the instance in the spawnedInstances array
             spawnedInstances[i] = instance;
         }
     }
-
     void DestroyAllInstances()
     {
         // Destroy all objects in the current round
@@ -104,19 +105,23 @@ public class SpawnManager : MonoBehaviour
         if (currentRound == 1)
         {
             currentPrefabArray = medievalPrefabs;  // Switch to medieval prefabs
+            heightPoss = -1.18f;
         }
         else if (currentRound == 2)
         {
             currentPrefabArray = contemporaryPrefabs;  // Switch to contemporary prefabs
+            heightPoss = 0.35f;
         }
         else if (currentRound == 3)
         {
             currentPrefabArray = modernPrefabs;    // Switch to modern prefabs
+            heightPoss = 4.8f;
         }
         else
         {
             currentRound = 0; // Loop back to the first round (primitive)
             currentPrefabArray = primitivePrefabs;
+            heightPoss = -1.61f;
         }
 
         // Instantiate objects for the next round

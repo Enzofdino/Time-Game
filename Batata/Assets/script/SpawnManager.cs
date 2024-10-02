@@ -12,35 +12,30 @@ public class SpawnManager : MonoBehaviour
     bool spawnContemporaneo = true;
     bool spawnModerno = true;
     #endregion
+
     public GameObject[] primitivePrefabs;
     public GameObject[] medievalPrefabs;
     public GameObject[] contemporaryPrefabs;
     public GameObject[] modernPrefabs;
 
-    // Current array being used for instantiation
     private GameObject[] currentPrefabArray;
     private GameObject[] spawnedInstances;
+    private Vector3[] instancePositions;
 
-    // Number of instances will be set randomly between 4 and 8
     private int numberOfInstances;
-
-    // Round counter
     private int currentRound = 0;
 
     float heightPoss = -1.65f;
+    float minDistance = 5f; // Distância mínima entre as instâncias
 
     void Start()
     {
-        // Start with the first array of prefabs (primitive)
         currentPrefabArray = primitivePrefabs;
         InstantiateObjects();
     }
 
     void Update()
-
-
     {
-        // Press 'D' to destroy current instances and move to the next round
         if (Contador.instance.ano == 10 && spawnMedieval == true)
         {
             DestroyAllInstances();
@@ -57,7 +52,7 @@ public class SpawnManager : MonoBehaviour
         {
             DestroyAllInstances();
             NextRound();
-            spawnModerno =false;
+            spawnModerno = false;
         }
     }
 
@@ -68,21 +63,49 @@ public class SpawnManager : MonoBehaviour
 
         // Initialize the spawnedInstances array based on the random number of instances
         spawnedInstances = new GameObject[numberOfInstances];
+        instancePositions = new Vector3[numberOfInstances]; // Armazena as posições das instâncias
 
         // Instantiate prefabs from the currentPrefabArray
         for (int i = 0; i < numberOfInstances; i++)
         {
-            // Randomly select a prefab from the currentPrefabArray
+            Vector3 newPosition;
+            bool validPosition = false;
+
+            // Tentar encontrar uma posição válida que não sobreponha outra
+            do
+            {
+                // Gerar uma nova posição aleatória
+                newPosition = new Vector3(Random.Range(38.61f, 106.8f), heightPoss, 1f);
+
+                // Verificar se a posição é válida
+                validPosition = IsPositionValid(newPosition, i);
+
+            } while (!validPosition); // Continuar até encontrar uma posição válida
+
+            // Instanciar o objeto na posição válida
             int randomIndex = Random.Range(0, currentPrefabArray.Length);
+            GameObject instance = Instantiate(currentPrefabArray[randomIndex], newPosition, quaternion.identity);
 
-            // Instantiate at a random position
-            GameObject instance = Instantiate(currentPrefabArray[randomIndex],
-                                              new Vector3(Random.Range(38.61f, 106.8f), heightPoss , 1f), quaternion.identity);
-
-            // Store the instance in the spawnedInstances array
+            // Armazenar a instância e sua posição
             spawnedInstances[i] = instance;
+            instancePositions[i] = newPosition;
         }
     }
+
+    // Função para verificar se a posição é válida (não sobrepõe outra)
+    bool IsPositionValid(Vector3 newPosition, int currentIndex)
+    {
+        for (int i = 0; i < currentIndex; i++)
+        {
+            // Verificar se a distância entre a nova posição e as posições anteriores é suficiente
+            if (Vector3.Distance(newPosition, instancePositions[i]) < minDistance)
+            {
+                return false; // Posição inválida, muito perto de outra instância
+            }
+        }
+        return true; // Posição válida
+    }
+
     void DestroyAllInstances()
     {
         // Destroy all objects in the current round

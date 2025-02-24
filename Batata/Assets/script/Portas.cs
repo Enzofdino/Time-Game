@@ -99,6 +99,11 @@ public class DoorInteraction : MonoBehaviour
 
         Debug.Log("Pergunta exibida: " + question.textoPergunta); // Verifica se o texto da pergunta foi definido
         Debug.Log("Resposta correta exibida: " + correctAnswerText.text); // Confirma a resposta correta
+        
+       /* if(consecutiveCorrectAnswers.count = 5)
+        {
+            Debug.Log("Acabou as perguntas");
+        }*/
     }
 
     bool GetAnswerFromPlayer()

@@ -723,8 +723,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5637,8 +5637,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6797,63 +6797,71 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[0].textoPergunta
-      value: 7+5 =
+      value: "    Os primeiros humanos precisavam ca\xE7ar para sobreviver. Qual
+        dessas op\xE7\xF5es era a melhor estrat\xE9gia para capturar um animal em
+        regi\xF5es com florestas densas e terreno irregular? "
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[1].textoPergunta
-      value: "15\u22126 ="
+      value: "2.Os primeiros humanos precisavam de fogo para sobreviver. Qual a melhor
+        forma de obter fogo naquela \xE9poca? "
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[2].textoPergunta
-      value: "4\xD77 ="
+      value: "3.Ao procurar abrigo, qual dessas op\xE7\xF5es era mais segura contra
+        predadores? "
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[3].textoPergunta
-      value: "36\xF74 ="
+      value: "4.Se voc\xEA encontrar pegadas de um animal, como saber para onde ele
+        foi? "
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[4].textoPergunta
-      value: "3\xB3 = "
+      value: "5.Para fazer ferramentas mais eficientes na era pr\xE9-hist\xF3rica,
+        o que seria melhor? "
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[0].respostaCorreta
-      value: 12
+      value: "Criar armadilhas no caminho dele. \u25A1 (Mais eficiente em florestas
+        e regi\xF5es fechadas.) "
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[1].respostaCorreta
-      value: 9
+      value: "Esfregar duas pedras at\xE9 sair fa\xEDsca. "
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[2].respostaCorreta
-      value: 28
+      value: ' Morar em cavernas protegidas. '
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[3].respostaCorreta
-      value: 9
+      value: "Observar a dire\xE7\xE3o das pegadas e a profundidade delas."
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[4].respostaCorreta
-      value: 27
+      value: Utilizar pedras afiadas e ossos de animais.
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[0].respostaIncorreta
-      value: 13
+      value: " Correr atr\xE1s dele at\xE9 ele se cansar. \u25A1 (Mais eficiente
+        em terrenos abertos, como savanas.)  "
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[1].respostaIncorreta
-      value: 8
+      value: "Colocar madeira dentro da \xE1gua para aquecer."
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[2].respostaIncorreta
-      value: 32
+      value: Construir uma cabana de galhos no meio da floresta.
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[3].respostaIncorreta
-      value: 8
+      value: "Olhar para a dire\xE7\xE3o mais clara no ch\xE3o. "
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[4].respostaIncorreta
-      value: 21
+      value: "Amarrar folhas umas nas outras para criar um bast\xE3o."
       objectReference: {fileID: 0}
     - target: {fileID: 8078861981999513101, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: m_Name
@@ -7519,70 +7527,78 @@ PrefabInstance:
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: incorrectAnswerText
       value: 
-      objectReference: {fileID: 1244640427}
+      objectReference: {fileID: 56311614}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.size
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[0].textoPergunta
-      value: 7+5 =
+      value: "    1.Os primeiros humanos precisavam ca\xE7ar para sobreviver. Qual
+        dessas op\xE7\xF5es era a melhor estrat\xE9gia para capturar um animal em
+        regi\xF5es com florestas densas e terreno irregular? "
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[1].textoPergunta
-      value: "15\u22126 ="
+      value: "2.Os primeiros humanos precisavam de fogo para sobreviver. Qual a melhor
+        forma de obter fogo naquela \xE9poca? "
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[2].textoPergunta
-      value: "4\xD77 ="
+      value: "3.Ao procurar abrigo, qual dessas op\xE7\xF5es era mais segura contra
+        predadores? "
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[3].textoPergunta
-      value: "36\xF74 ="
+      value: "4.Se voc\xEA encontrar pegadas de um animal, como saber para onde ele
+        foi? "
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[4].textoPergunta
-      value: "3\xB3 = "
+      value: "5.Para fazer ferramentas mais eficientes na era pr\xE9-hist\xF3rica,
+        o que seria melhor? "
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[0].respostaCorreta
-      value: 12
+      value: "Criar armadilhas no caminho dele. \u25A1 (Mais eficiente em florestas
+        e regi\xF5es fechadas.) "
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[1].respostaCorreta
-      value: 9
+      value: "Esfregar duas pedras at\xE9 sair fa\xEDsca. "
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[2].respostaCorreta
-      value: 28
+      value: ' Morar em cavernas protegidas. '
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[3].respostaCorreta
-      value: 9
+      value: "Observar a dire\xE7\xE3o das pegadas e a profundidade delas."
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[4].respostaCorreta
-      value: 27
+      value: Utilizar pedras afiadas e ossos de animais.
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[0].respostaIncorreta
-      value: 13
+      value: " Correr atr\xE1s dele at\xE9 ele se cansar. \u274C (Mais eficiente
+        em terrenos abertos, como savanas.)  "
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[1].respostaIncorreta
-      value: 8
+      value: "Colocar madeira dentro da \xE1gua para aquecer."
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[2].respostaIncorreta
-      value: 32
+      value: Construir uma cabana de galhos no meio da floresta.
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[3].respostaIncorreta
-      value: 8
+      value: "Olhar para a dire\xE7\xE3o mais clara no ch\xE3o. "
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: questions.Array.data[4].respostaIncorreta
-      value: 21
+      value: "Amarrar folhas umas nas outras para criar um bast\xE3o."
       objectReference: {fileID: 0}
     - target: {fileID: 8078861981999513101, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: m_Name
@@ -8673,8 +8689,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

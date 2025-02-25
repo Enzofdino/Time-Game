@@ -121,33 +121,43 @@ public class SpawnManager : MonoBehaviour
 
     void NextRound()
     {
-        // Increment the round counter
-        currentRound++;
+        void NextRound()
+        {
+            // Incrementa o contador de rodada
+            currentRound++;
 
-        // Switch to the next array based on the round in the specified order
-        if (currentRound == 1)
-        {
-            currentPrefabArray = medievalPrefabs;  // Switch to medieval prefabs
-            heightPoss = -1.18f;
-        }
-        else if (currentRound == 2)
-        {
-            currentPrefabArray = contemporaryPrefabs;  // Switch to contemporary prefabs
-            heightPoss = 0.35f;
-        }
-        else if (currentRound == 3)
-        {
-            currentPrefabArray = modernPrefabs;    // Switch to modern prefabs
-            heightPoss = 4.8f;
-        }
-        else
-        {
-            currentRound = 0; // Loop back to the first round (primitive)
-            currentPrefabArray = primitivePrefabs;
-            heightPoss = -1.61f;
-        }
+            // Alterna para o próximo conjunto de prefabs baseado na rodada
+            if (currentRound == 1)
+            {
+                currentPrefabArray = medievalPrefabs;  // Era medieval
+                heightPoss = -1.18f;
+            }
+            else if (currentRound == 2)
+            {
+                currentPrefabArray = contemporaryPrefabs;  // Era contemporânea
+                heightPoss = 0.35f;
+            }
+            else if (currentRound == 3)
+            {
+                currentPrefabArray = modernPrefabs;    // Era moderna
+                heightPoss = 4.8f;
+            }
+            else
+            {
+                currentRound = 0; // Volta para a era primitiva
+                currentPrefabArray = primitivePrefabs;
+                heightPoss = -1.61f;
+            }
 
-        // Instantiate objects for the next round
-        InstantiateObjects();
+            // Atualiza todas as portas para a nova era
+            DoorInteraction[] doors = FindObjectsOfType<DoorInteraction>();
+            foreach (DoorInteraction door in doors)
+            {
+                door.UpdateQuestions(currentRound);
+            }
+
+            // Instancia os objetos da nova era
+            InstantiateObjects();
+        }
     }
 }

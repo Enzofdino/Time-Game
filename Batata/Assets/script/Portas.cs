@@ -73,37 +73,60 @@ public class DoorInteraction : MonoBehaviour
             return;
         }
 
+        if (questionText == null || correctAnswerText == null || incorrectAnswerText == null)
+        {
+            Debug.LogError("Os componentes de texto não estão atribuídos no Inspector!");
+            return;
+        }
+
+        if (correctDoor == null || incorrectDoor == null)
+        {
+            Debug.LogError("Os objetos das portas não estão atribuídos no Inspector!");
+            return;
+        }
+
         // Seleciona uma pergunta aleatória da lista
         Question question = questions[Random.Range(0, questions.Count)];
-        questionText.text = question.textoPergunta;  // Define o texto da pergunta
+        questionText.text = question.textoPergunta;
 
         // Define aleatoriamente qual porta será a correta
         bool correctOnLeft = Random.Range(0, 2) == 0;
+
+        TextMeshProUGUI correctDoorText = correctDoor.GetComponentInChildren<TextMeshProUGUI>();
+        TextMeshProUGUI incorrectDoorText = incorrectDoor.GetComponentInChildren<TextMeshProUGUI>();
+
+        if (correctDoorText == null)
+            Debug.LogError("TextMeshProUGUI não encontrado dentro de correctDoor!", correctDoor);
+
+        if (incorrectDoorText == null)
+            Debug.LogError("TextMeshProUGUI não encontrado dentro de incorrectDoor!", incorrectDoor);
+
+        if (correctDoorText == null || incorrectDoorText == null)
+        {
+            Debug.LogError("As portas não possuem um componente TextMeshProUGUI dentro!");
+            return;
+        }
+        if (isPlayerNearby = correctDoor)
+            Debug.Log("O jogador acertou a questão");
 
         if (correctOnLeft)
         {
             correctAnswerText.text = question.respostaCorreta;
             incorrectAnswerText.text = question.respostaIncorreta;
 
-            correctDoor.GetComponentInChildren<TextMeshProUGUI>().text = question.respostaCorreta;
-            incorrectDoor.GetComponentInChildren<TextMeshProUGUI>().text = question.respostaIncorreta;
+            correctDoorText.text = question.respostaCorreta;
+            incorrectDoorText.text = question.respostaIncorreta;
         }
         else
         {
             correctAnswerText.text = question.respostaIncorreta;
             incorrectAnswerText.text = question.respostaCorreta;
 
-            correctDoor.GetComponentInChildren<TextMeshProUGUI>().text = question.respostaIncorreta;
-            incorrectDoor.GetComponentInChildren<TextMeshProUGUI>().text = question.respostaCorreta;
+            correctDoorText.text = question.respostaIncorreta;
+            incorrectDoorText.text = question.respostaCorreta;
         }
 
-        Debug.Log("Pergunta exibida: " + question.textoPergunta); // Verifica se o texto da pergunta foi definido
-        Debug.Log("Resposta correta exibida: " + correctAnswerText.text); // Confirma a resposta correta
-
-        /* if(consecutiveCorrectAnswers.count = 5)
-         {
-             Debug.Log("Acabou as perguntas");
-         }*/
+        Debug.Log("Pergunta exibida: " + question.textoPergunta);
     }
 
     bool GetAnswerFromPlayer()

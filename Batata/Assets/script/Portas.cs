@@ -1,4 +1,4 @@
-using TMPro;
+Ôªøusing TMPro;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -24,14 +24,8 @@ public class DoorInteraction : MonoBehaviour
     public GameObject correctDoor;
     public GameObject incorrectDoor;
 
-    public List<Question> primitiveQuestions = new List<Question>();
-    public List<Question> medievalQuestions = new List<Question>();
-    public List<Question> contemporaryQuestions = new List<Question>();
-    public List<Question> modernQuestions = new List<Question>();
-
-    private List<Question> currentQuestions = new List<Question>();
-    private HashSet<int> usedQuestions = new HashSet<int>();
-    private int currentEra = 0;
+    // Lista p√∫blica de perguntas para serem editadas no Inspector
+    public List<Question> questions = new List<Question>();
 
     void Start()
     {
@@ -39,8 +33,7 @@ public class DoorInteraction : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = defaultSprite;
 
-        UpdateQuestions(0);
-        // Chama AskQuestion() para exibir a primeira pergunta e respostas assim que o jogo comeÁa
+        // Chama AskQuestion() para exibir a primeira pergunta e respostas assim que o jogo come√ßa
         AskQuestion();
     }
 
@@ -67,118 +60,56 @@ public class DoorInteraction : MonoBehaviour
         if (other == playerCollider)
         {
             isPlayerNearby = false;
-            Debug.Log("Jogador saiu da ·rea da porta.");
+            Debug.Log("Jogador saiu da √°rea da porta.");
             spriteRenderer.sprite = defaultSprite;
         }
     }
 
     void AskQuestion()
     {
-        if (currentQuestions.Count == 0)
+        if (questions.Count == 0)
         {
-            Debug.LogWarning("Nenhuma pergunta disponÌvel para esta era.");
+            Debug.LogWarning("Nenhuma pergunta encontrada.");
             return;
         }
 
-        // Se todas as perguntas j· foram usadas, reinicia a sequÍncia e embaralha
-        if (questionIndex >= currentQuestions.Count)
-        {
-            questionIndex = 0;
-            ShuffleQuestions();
-        }
+        // Seleciona uma pergunta aleat√≥ria da lista
+        Question question = questions[Random.Range(0, questions.Count)];
+        questionText.text = question.textoPergunta;  // Define o texto da pergunta
 
-        Question question = currentQuestions[questionIndex];
-
-        questionText.text = question.textoPergunta;
+        // Define aleatoriamente qual porta ser√° a correta
         bool correctOnLeft = Random.Range(0, 2) == 0;
 
         if (correctOnLeft)
         {
             correctAnswerText.text = question.respostaCorreta;
             incorrectAnswerText.text = question.respostaIncorreta;
+
+            correctDoor.GetComponentInChildren<TextMeshProUGUI>().text = question.respostaCorreta;
+            incorrectDoor.GetComponentInChildren<TextMeshProUGUI>().text = question.respostaIncorreta;
         }
         else
         {
             correctAnswerText.text = question.respostaIncorreta;
             incorrectAnswerText.text = question.respostaCorreta;
+
+            correctDoor.GetComponentInChildren<TextMeshProUGUI>().text = question.respostaIncorreta;
+            incorrectDoor.GetComponentInChildren<TextMeshProUGUI>().text = question.respostaCorreta;
         }
 
-        correctDoor.GetComponentInChildren<TextMeshProUGUI>().text = correctAnswerText.text;
-        incorrectDoor.GetComponentInChildren<TextMeshProUGUI>().text = incorrectAnswerText.text;
+        Debug.Log("Pergunta exibida: " + question.textoPergunta); // Verifica se o texto da pergunta foi definido
+        Debug.Log("Resposta correta exibida: " + correctAnswerText.text); // Confirma a resposta correta
+
+        /* if(consecutiveCorrectAnswers.count = 5)
+         {
+             Debug.Log("Acabou as perguntas");
+         }*/
     }
-
-
-    public void UpdateQuestions(int newEra)
-    {
-        Debug.Log("Correct Door: " + correctDoor);
-        Debug.Log("Incorrect Door: " + incorrectDoor);
-
-        if (correctDoor.GetComponentInChildren<TextMeshProUGUI>() == null)
-            Debug.LogError("A porta correta n„o possui um TextMeshProUGUI!");
-
-        if (incorrectDoor.GetComponentInChildren<TextMeshProUGUI>() == null)
-            Debug.LogError("A porta incorreta n„o possui um TextMeshProUGUI!");
-
-        currentEra = newEra;
-        usedQuestions.Clear();
-        questionIndex = 0; // Reinicia o Ìndice ao mudar de era
-
-        switch (newEra)
-        {
-            case 0:
-                currentQuestions = new List<Question>(primitiveQuestions);
-                break;
-            case 1:
-                currentQuestions = new List<Question>(medievalQuestions);
-                break;
-            case 2:
-                currentQuestions = new List<Question>(contemporaryQuestions);
-                break;
-            case 3:
-                currentQuestions = new List<Question>(modernQuestions);
-                break;
-        }
-
-        // Embaralha as perguntas para evitar padrıes
-        ShuffleQuestions();
-
-        AskQuestion();
-    }
-    private void ShuffleQuestions()
-    {
-        for (int i = currentQuestions.Count - 1; i > 0; i--)
-        {
-            int j = Random.Range(0, i + 1);
-            Question temp = currentQuestions[i];
-            currentQuestions[i] = currentQuestions[j];
-            currentQuestions[j] = temp;
-        }
-    }
-    public void ProcessCorrectAnswer()
-    {
-        if (questionIndex < currentQuestions.Count)
-        {
-            currentQuestions.RemoveAt(questionIndex); // Remove a pergunta correta
-        }
-
-        // Se todas as perguntas foram respondidas corretamente, reinicia a lista
-        if (currentQuestions.Count == 0)
-        {
-            UpdateQuestions(currentEra);
-        }
-        else
-        {
-            AskQuestion();
-        }
-    }
-
-
 
     bool GetAnswerFromPlayer()
     {
         return Random.Range(0, 2) == 0;
     }
-
 }
 
 // Classe para armazenar perguntas e respostas

@@ -52,6 +52,16 @@ public class DoorInteraction : MonoBehaviour
             isPlayerNearby = true;
             Debug.Log("Jogador pode interagir com a porta.");
             spriteRenderer.sprite = highlightedSprite;
+
+            // Verifica se o jogador entrou na porta correta
+            if (other.gameObject == correctDoor)
+            {
+                Debug.Log("O jogador acertou a questão!");
+            }
+            else if (other.gameObject == incorrectDoor)
+            {
+                Debug.Log("O jogador errou a questão!");
+            }
         }
     }
 
@@ -106,9 +116,7 @@ public class DoorInteraction : MonoBehaviour
             Debug.LogError("As portas não possuem um componente TextMeshProUGUI dentro!");
             return;
         }
-        if (isPlayerNearby = correctDoor)
-            Debug.Log("O jogador acertou a questão");
-
+        
         if (correctOnLeft)
         {
             correctAnswerText.text = question.respostaCorreta;
@@ -134,6 +142,7 @@ public class DoorInteraction : MonoBehaviour
         return Random.Range(0, 2) == 0;
     }
 }
+ 
 
 // Classe para armazenar perguntas e respostas
 [System.Serializable]

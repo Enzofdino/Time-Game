@@ -110,6 +110,15 @@ public class DoorInteraction : MonoBehaviour
 
     public void UpdateQuestions(int newEra)
     {
+        Debug.Log("Correct Door: " + correctDoor);
+        Debug.Log("Incorrect Door: " + incorrectDoor);
+
+        if (correctDoor.GetComponentInChildren<TextMeshProUGUI>() == null)
+            Debug.LogError("A porta correta não possui um TextMeshProUGUI!");
+
+        if (incorrectDoor.GetComponentInChildren<TextMeshProUGUI>() == null)
+            Debug.LogError("A porta incorreta não possui um TextMeshProUGUI!");
+
         currentEra = newEra;
         usedQuestions.Clear();
         questionIndex = 0; // Reinicia o índice ao mudar de era
@@ -169,6 +178,7 @@ public class DoorInteraction : MonoBehaviour
     {
         return Random.Range(0, 2) == 0;
     }
+
 }
 
 // Classe para armazenar perguntas e respostas

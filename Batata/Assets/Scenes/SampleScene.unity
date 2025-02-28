@@ -6880,6 +6880,74 @@ PrefabInstance:
       value: "Amarrar folhas umas nas outras para criar um bast\xE3o."
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[0].textoPergunta
+      value: "    Se voc\xEA precisa armazenar muitos dados sem ocupar espa\xE7o
+        f\xEDsico, qual a melhor solu\xE7\xE3o? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[1].textoPergunta
+      value: "    Voc\xEA quer economizar bateria do celular. O que \xE9 mais eficiente? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[2].textoPergunta
+      value: "    Para proteger sua conta banc\xE1ria online, o que \xE9 mais seguro? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[3].textoPergunta
+      value: "    Se um carro el\xE9trico est\xE1 descarregando, o que deve ser feito? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[4].textoPergunta
+      value: "    Se voc\xEA est\xE1 em um ambiente com intelig\xEAncia artificial,
+        como ela pode te ajudar no dia a dia? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[0].textoPergunta
+      value: "    Os castelos eram constru\xEDdos com estruturas defensivas. Qual
+        era a melhor forma de impedir invas\xF5es? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[1].textoPergunta
+      value: "    Os cavaleiros precisavam planejar suas estrat\xE9gias de ataque.
+        Qual era a melhor escolha? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[2].textoPergunta
+      value: "    Qual era a melhor forma de comunica\xE7\xE3o entre reinos distantes
+        na Idade M\xE9dia? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[3].textoPergunta
+      value: "    Se um campon\xEAs quisesse vender seus produtos, qual o melhor
+        local para fazer isso? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[4].textoPergunta
+      value: "    Se voc\xEA fosse um ferreiro medieval e precisasse fazer uma espada
+        mais forte, o que deveria fazer? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[0].respostaCorreta
+      value: 'Utilizar armazenamento em nuvem. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[1].respostaCorreta
+      value: "Reduzir o brilho da tela e fechar aplicativos que n\xE3o est\xE3o sendo
+        usados."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[2].respostaCorreta
+      value: "Usar senhas fortes e autentica\xE7\xE3o de dois fatores."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[3].respostaCorreta
+      value: "Lev\xE1-lo a um ponto de carregamento el\xE9trico."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[4].respostaCorreta
+      value: "Automatizando tarefas, respondendo perguntas e sugerindo solu\xE7\xF5es. "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: primitiveQuestions.Array.data[0].textoPergunta
       value: "    Os primeiros humanos precisavam ca\xE7ar para sobreviver. Qual
         dessas op\xE7\xF5es era a melhor estrat\xE9gia para capturar um animal em
@@ -6906,6 +6974,46 @@ PrefabInstance:
         o que seria melhor? "
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[0].respostaCorreta
+      value: "Construir um fosso com \xE1gua em volta do castelo."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[1].respostaCorreta
+      value: " Observar o territ\xF3rio e identificar fraquezas antes de atacar."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[2].respostaCorreta
+      value: 'Enviar mensageiros a cavalo. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[3].respostaCorreta
+      value: 'No mercado da vila. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[4].respostaCorreta
+      value: "Aquecer o metal e martel\xE1-lo para dar resist\xEAncia. "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[0].respostaIncorreta
+      value: Imprimir tudo em papel e guardar em gavetas.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[1].respostaIncorreta
+      value: 'Ficar abrindo e fechando o celular para verificar a bateria. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[2].respostaIncorreta
+      value: 'Anotar a senha em um papel e deixar na carteira. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[3].respostaIncorreta
+      value: "Colocar gasolina no motor, mesmo sendo el\xE9trico."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[4].respostaIncorreta
+      value: "Criando rob\xF4s gigantes para dominar a humanidade."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: primitiveQuestions.Array.data[0].respostaCorreta
       value: Criar armadilhas no caminho dele.
       objectReference: {fileID: 0}
@@ -6926,6 +7034,51 @@ PrefabInstance:
       value: 'Utilizar pedras afiadas e ossos de animais. '
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[0].textoPergunta
+      value: "    Voc\xEA precisa atravessar uma cidade grande rapidamente. Qual
+        a melhor op\xE7\xE3o? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[1].textoPergunta
+      value: "    Se uma l\xE2mpada que voc\xEA usa frequentemente queima, qual seria
+        a melhor forma de economizar energia? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[2].textoPergunta
+      value: "    Se um avi\xE3o est\xE1 indo de um pa\xEDs para outro, o que ele
+        precisa seguir para n\xE3o se perder? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[3].textoPergunta
+      value: "    Voc\xEA quer se comunicar rapidamente com algu\xE9m em outro pa\xEDs.
+        Qual a melhor op\xE7\xE3o? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[4].textoPergunta
+      value: "    Se uma cidade enfrenta muito tr\xE2nsito, qual a melhor solu\xE7\xE3o
+        para reduzir esse problema? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[0].respostaIncorreta
+      value: "    Pintar o castelo de uma cor escura para assustar inimigos. \u25A1 "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[1].respostaIncorreta
+      value: 'Atacar diretamente sem planejamento. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[2].respostaIncorreta
+      value: 'Gritar bem alto de uma montanha. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[3].respostaIncorreta
+      value: No meio da floresta longe das pessoas.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[4].respostaIncorreta
+      value: "Deixar o ferro na chuva para que ele endure\xE7a com a \xE1gua. "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: primitiveQuestions.Array.data[0].respostaIncorreta
       value: " Correr atr\xE1s dele at\xE9 ele se cansar."
       objectReference: {fileID: 0}
@@ -6944,6 +7097,46 @@ PrefabInstance:
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: primitiveQuestions.Array.data[4].respostaIncorreta
       value: " Amarrar folhas umas nas outras para criar um bast\xE3o."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[0].respostaCorreta
+      value: "Usar transporte p\xFAblico ou ve\xEDculos. "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[1].respostaCorreta
+      value: "Trocar por uma l\xE2mpada de LED, que dura mais e consome menos energia. "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[2].respostaCorreta
+      value: "Um mapa e sistemas de navega\xE7\xE3o modernos. "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[3].respostaCorreta
+      value: 'Usar a internet para enviar uma mensagem ou fazer uma chamada. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[4].respostaCorreta
+      value: "Criar faixas exclusivas para transporte p\xFAblico e incentivar bicicletas."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[0].respostaIncorreta
+      value: "Correr por entre os pr\xE9dios at\xE9 chegar ao destino."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[1].respostaIncorreta
+      value: "Usar mais l\xE2mpadas comuns para compensar a que queimou."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[2].respostaIncorreta
+      value: Apenas olhar para as estrelas, como faziam os navegadores antigos.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[3].respostaIncorreta
+      value: ' Escrever uma carta e esperar um mensageiro levar. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[4].respostaIncorreta
+      value: 'Construir mais estacionamentos para que todos tenham um carro. '
       objectReference: {fileID: 0}
     - target: {fileID: 8078861981999513101, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: m_Name
@@ -7699,6 +7892,74 @@ PrefabInstance:
       value: "Amarrar folhas umas nas outras para criar um bast\xE3o."
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[0].textoPergunta
+      value: "    Se voc\xEA precisa armazenar muitos dados sem ocupar espa\xE7o
+        f\xEDsico, qual a melhor solu\xE7\xE3o? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[1].textoPergunta
+      value: "    Voc\xEA quer economizar bateria do celular. O que \xE9 mais eficiente? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[2].textoPergunta
+      value: "    Para proteger sua conta banc\xE1ria online, o que \xE9 mais seguro? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[3].textoPergunta
+      value: "    Se um carro el\xE9trico est\xE1 descarregando, o que deve ser feito? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[4].textoPergunta
+      value: "    Se voc\xEA est\xE1 em um ambiente com intelig\xEAncia artificial,
+        como ela pode te ajudar no dia a dia? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[0].textoPergunta
+      value: "    Os castelos eram constru\xEDdos com estruturas defensivas. Qual
+        era a melhor forma de impedir invas\xF5es? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[1].textoPergunta
+      value: "    Os cavaleiros precisavam planejar suas estrat\xE9gias de ataque.
+        Qual era a melhor escolha? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[2].textoPergunta
+      value: "    Qual era a melhor forma de comunica\xE7\xE3o entre reinos distantes
+        na Idade M\xE9dia? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[3].textoPergunta
+      value: "    Se um campon\xEAs quisesse vender seus produtos, qual o melhor
+        local para fazer isso? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[4].textoPergunta
+      value: "    Se voc\xEA fosse um ferreiro medieval e precisasse fazer uma espada
+        mais forte, o que deveria fazer? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[0].respostaCorreta
+      value: 'Utilizar armazenamento em nuvem. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[1].respostaCorreta
+      value: "Reduzir o brilho da tela e fechar aplicativos que n\xE3o est\xE3o sendo
+        usados."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[2].respostaCorreta
+      value: "Usar senhas fortes e autentica\xE7\xE3o de dois fatores."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[3].respostaCorreta
+      value: "Lev\xE1-lo a um ponto de carregamento el\xE9trico."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[4].respostaCorreta
+      value: "Automatizando tarefas, respondendo perguntas e sugerindo solu\xE7\xF5es. "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: primitiveQuestions.Array.data[0].textoPergunta
       value: "    Os primeiros humanos precisavam ca\xE7ar para sobreviver. Qual
         dessas op\xE7\xF5es era a melhor estrat\xE9gia para capturar um animal em
@@ -7725,6 +7986,46 @@ PrefabInstance:
         o que seria melhor? "
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[0].respostaCorreta
+      value: "Construir um fosso com \xE1gua em volta do castelo."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[1].respostaCorreta
+      value: " Observar o territ\xF3rio e identificar fraquezas antes de atacar."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[2].respostaCorreta
+      value: 'Enviar mensageiros a cavalo. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[3].respostaCorreta
+      value: 'No mercado da vila. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[4].respostaCorreta
+      value: "Aquecer o metal e martel\xE1-lo para dar resist\xEAncia. "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[0].respostaIncorreta
+      value: Imprimir tudo em papel e guardar em gavetas.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[1].respostaIncorreta
+      value: 'Ficar abrindo e fechando o celular para verificar a bateria. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[2].respostaIncorreta
+      value: 'Anotar a senha em um papel e deixar na carteira. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[3].respostaIncorreta
+      value: "Colocar gasolina no motor, mesmo sendo el\xE9trico."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: modernQuestions.Array.data[4].respostaIncorreta
+      value: "Criando rob\xF4s gigantes para dominar a humanidade."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: primitiveQuestions.Array.data[0].respostaCorreta
       value: Criar armadilhas no caminho dele.
       objectReference: {fileID: 0}
@@ -7745,6 +8046,51 @@ PrefabInstance:
       value: 'Utilizar pedras afiadas e ossos de animais. '
       objectReference: {fileID: 0}
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[0].textoPergunta
+      value: "    Voc\xEA precisa atravessar uma cidade grande rapidamente. Qual
+        a melhor op\xE7\xE3o? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[1].textoPergunta
+      value: "    Se uma l\xE2mpada que voc\xEA usa frequentemente queima, qual seria
+        a melhor forma de economizar energia? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[2].textoPergunta
+      value: "    Se um avi\xE3o est\xE1 indo de um pa\xEDs para outro, o que ele
+        precisa seguir para n\xE3o se perder? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[3].textoPergunta
+      value: "    Voc\xEA quer se comunicar rapidamente com algu\xE9m em outro pa\xEDs.
+        Qual a melhor op\xE7\xE3o? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[4].textoPergunta
+      value: "    Se uma cidade enfrenta muito tr\xE2nsito, qual a melhor solu\xE7\xE3o
+        para reduzir esse problema? "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[0].respostaIncorreta
+      value: "    Pintar o castelo de uma cor escura para assustar inimigos. \u274C "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[1].respostaIncorreta
+      value: 'Atacar diretamente sem planejamento. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[2].respostaIncorreta
+      value: 'Gritar bem alto de uma montanha. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[3].respostaIncorreta
+      value: No meio da floresta longe das pessoas.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: medievalQuestions.Array.data[4].respostaIncorreta
+      value: "Deixar o ferro na chuva para que ele endure\xE7a com a \xE1gua. "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: primitiveQuestions.Array.data[0].respostaIncorreta
       value: " Correr atr\xE1s dele at\xE9 ele se cansar."
       objectReference: {fileID: 0}
@@ -7763,6 +8109,46 @@ PrefabInstance:
     - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: primitiveQuestions.Array.data[4].respostaIncorreta
       value: " Amarrar folhas umas nas outras para criar um bast\xE3o."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[0].respostaCorreta
+      value: "Usar transporte p\xFAblico ou ve\xEDculos. "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[1].respostaCorreta
+      value: "Trocar por uma l\xE2mpada de LED, que dura mais e consome menos energia. "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[2].respostaCorreta
+      value: "Um mapa e sistemas de navega\xE7\xE3o modernos. "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[3].respostaCorreta
+      value: 'Usar a internet para enviar uma mensagem ou fazer uma chamada. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[4].respostaCorreta
+      value: "Criar faixas exclusivas para transporte p\xFAblico e incentivar bicicletas."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[0].respostaIncorreta
+      value: "Correr por entre os pr\xE9dios at\xE9 chegar ao destino."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[1].respostaIncorreta
+      value: "Usar mais l\xE2mpadas comuns para compensar a que queimou."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[2].respostaIncorreta
+      value: Apenas olhar para as estrelas, como faziam os navegadores antigos.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[3].respostaIncorreta
+      value: ' Escrever uma carta e esperar um mensageiro levar. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: contemporaryQuestions.Array.data[4].respostaIncorreta
+      value: 'Construir mais estacionamentos para que todos tenham um carro. '
       objectReference: {fileID: 0}
     - target: {fileID: 8078861981999513101, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: m_Name

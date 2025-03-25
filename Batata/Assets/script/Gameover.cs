@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Gameover : MonoBehaviour
 {
@@ -29,5 +30,19 @@ public class Gameover : MonoBehaviour
             Debug.LogError("GameOver Canvas não está atribuído!");
         }
     }
-    
+    private IEnumerator GameOverRoutine()
+    {
+        Debug.Log("Game Over iniciado...");
+
+        yield return new WaitForSecondsRealtime(0.1f); // Garante que a UI atualiza antes de pausar
+
+        gameOverCanvas.SetActive(true);
+        Debug.Log("Canvas ativado!");
+
+        yield return new WaitForSecondsRealtime(0.1f); // Tempo extra para garantir que aparece
+
+        Time.timeScale = 0f; // Agora pausa o jogo
+        Debug.Log("Jogo pausado!");
+    }
+
 }

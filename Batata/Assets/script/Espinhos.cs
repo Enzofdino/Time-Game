@@ -7,6 +7,8 @@ public class Espinhos : MonoBehaviour
 
     public SpriteRenderer spriteRenderer;
     public Collider2D spikeCollider;
+   
+
     private bool ativo = true; // Controla se os espinhos estão visíveis
 
     void Awake()
@@ -14,6 +16,7 @@ public class Espinhos : MonoBehaviour
         instance = this;
         spriteRenderer = GetComponent<SpriteRenderer>();
         spikeCollider = GetComponent<Collider2D>();
+       
     }
 
     void Start()
@@ -34,8 +37,9 @@ public class Espinhos : MonoBehaviour
             // Espinhos aparecem
             spriteRenderer.enabled = true;
             spikeCollider.enabled = true;
+          
             ativo = true;
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(1f);
 
             // Aguarda enquanto o tempo estiver congelado
             while (Contador.isTimeFrozen)
@@ -46,8 +50,9 @@ public class Espinhos : MonoBehaviour
             // Espinhos somem
             spriteRenderer.enabled = false;
             spikeCollider.enabled = false;
+            
             ativo = false;
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(2f);
         }
     }
 

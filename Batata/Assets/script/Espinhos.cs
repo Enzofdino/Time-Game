@@ -7,16 +7,16 @@ public class Espinhos : MonoBehaviour
 
     public SpriteRenderer spriteRenderer;
     public Collider2D spikeCollider;
-   
 
-    private bool ativo = true; // Controla se os espinhos estão visíveis
+    [SerializeField] private float tempoAlternancia = 1f;
+    [SerializeField] private float tempoAlternancia1 = 1f;
+    private bool ativo = true;
 
     void Awake()
     {
         instance = this;
         spriteRenderer = GetComponent<SpriteRenderer>();
         spikeCollider = GetComponent<Collider2D>();
-       
     }
 
     void Start()
@@ -28,31 +28,25 @@ public class Espinhos : MonoBehaviour
     {
         while (true)
         {
-            // Aguarda enquanto o tempo estiver congelado
             while (Contador.isTimeFrozen)
             {
                 yield return null;
             }
 
-            // Espinhos aparecem
             spriteRenderer.enabled = true;
             spikeCollider.enabled = true;
-          
             ativo = true;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(tempoAlternancia);
 
-            // Aguarda enquanto o tempo estiver congelado
             while (Contador.isTimeFrozen)
             {
                 yield return null;
             }
 
-            // Espinhos somem
             spriteRenderer.enabled = false;
             spikeCollider.enabled = false;
-            
             ativo = false;
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(tempoAlternancia1);
         }
     }
 
@@ -64,6 +58,4 @@ public class Espinhos : MonoBehaviour
             Gameover.instance.AtivarGameOver();
         }
     }
-
-
 }

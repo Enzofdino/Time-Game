@@ -1,21 +1,28 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Tilemaps; // Importa suporte para Tilemaps
 
 public class PlataformaVoadora : MonoBehaviour
 {
-    [SerializeField] private float tempoVisivel = 2f; // Tempo visível
-    [SerializeField] private float tempoInvisivel = 2f; // Tempo invisível
-    private SpriteRenderer spriteRenderer;
-    public Collider2D colisor; // Alterado para Collider2D
+    [SerializeField] private float tempoVisivel = 2f;
+    [SerializeField] private float tempoInvisivel = 2f;
+
+    public Tilemap tilemap;
+    public TilemapRenderer tilemapRenderer;
+    public TilemapCollider2D tilemapCollider;
 
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        colisor = GetComponent<Collider2D>(); // Garante que o Collider2D seja corretamente atribuído
+        // Obtém os componentes corretos do Tilemap
+        tilemap = GetComponent<Tilemap>();
+        tilemapRenderer = GetComponent<TilemapRenderer>();
+        tilemapCollider = GetComponent<TilemapCollider2D>();
 
-        if (colisor == null)
+        // Verifica se os componentes foram encontrados
+        if (tilemap == null || tilemapRenderer == null || tilemapCollider == null)
         {
-            Debug.LogError("Nenhum Collider2D encontrado na plataforma!", this);
+            Debug.LogError("PlataformaVoadora: Faltam componentes Tilemap!", this);
+            return;
         }
 
         StartCoroutine(ControlarPlataforma());
@@ -31,8 +38,8 @@ public class PlataformaVoadora : MonoBehaviour
             }
 
             // Plataforma visível
-            spriteRenderer.enabled = true;
-            colisor.enabled = true;
+            tilemapRenderer.enabled = true;
+            tilemapCollider.enabled = true;
             yield return new WaitForSeconds(tempoVisivel);
 
             while (Contador.isTimeFrozen) // Aguarda enquanto o tempo estiver pausado
@@ -41,9 +48,10 @@ public class PlataformaVoadora : MonoBehaviour
             }
 
             // Plataforma invisível
-            spriteRenderer.enabled = false;
-            colisor.enabled = false;
+            tilemapRenderer.enabled = false;
+            tilemapCollider.enabled = false;
             yield return new WaitForSeconds(tempoInvisivel);
         }
     }
 }
+

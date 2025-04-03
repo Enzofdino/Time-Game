@@ -38,8 +38,8 @@ public class CodigoSecreto : MonoBehaviour
             // Verifica se o jogador pressiona "E" para acionar o interruptor
             if (interruptorAtual != null && Input.GetKeyDown(KeyCode.E))
             {
-                int id = interruptorAtual.GetComponent<Interruptor>().id;
-                AcionarInterruptor(id);
+               // int id = interruptorAtual.GetComponent<Interruptor>().id;
+              //  AcionarInterruptor(id);
             }
         }
     }

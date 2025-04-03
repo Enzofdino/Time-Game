@@ -1,4 +1,4 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -24,7 +24,7 @@ public class DoorInteraction : MonoBehaviour
     public GameObject correctDoor;
     public GameObject incorrectDoor;
 
-    // Lista p�blica de perguntas para serem editadas no Inspector
+    // Lista pública de perguntas para serem editadas no Inspector
     public List<Question> questions = new List<Question>();
 
     void Start()
@@ -33,7 +33,7 @@ public class DoorInteraction : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = defaultSprite;
 
-        // Chama AskQuestion() para exibir a primeira pergunta e respostas assim que o jogo come�a
+        // Chama AskQuestion() para exibir a primeira pergunta e respostas assim que o jogo começa
         AskQuestion();
     }
 
@@ -52,6 +52,16 @@ public class DoorInteraction : MonoBehaviour
             isPlayerNearby = true;
             Debug.Log("Jogador pode interagir com a porta.");
             spriteRenderer.sprite = highlightedSprite;
+
+            // Verifica se o jogador entrou na porta correta
+            if (other.gameObject == correctDoor)
+            {
+                Debug.Log("O jogador acertou a questão!");
+            }
+            else if (other.gameObject == incorrectDoor)
+            {
+                Debug.Log("O jogador errou a questão!");
+            }
         }
     }
 
@@ -60,7 +70,7 @@ public class DoorInteraction : MonoBehaviour
         if (other == playerCollider)
         {
             isPlayerNearby = false;
-            Debug.Log("Jogador saiu da �rea da porta.");
+            Debug.Log("Jogador saiu da área da porta.");
             spriteRenderer.sprite = defaultSprite;
         }
     }
@@ -73,32 +83,58 @@ public class DoorInteraction : MonoBehaviour
             return;
         }
 
-        // Seleciona uma pergunta aleat�ria da lista
-        Question question = questions[Random.Range(0, questions.Count)];
-        questionText.text = question.textoPergunta;  // Define o texto da pergunta
+        if (questionText == null || correctAnswerText == null || incorrectAnswerText == null)
+        {
+            Debug.LogError("Os componentes de texto não estão atribuídos no Inspector!");
+            return;
+        }
 
-        // Define aleatoriamente qual porta ser� a correta
+        if (correctDoor == null || incorrectDoor == null)
+        {
+            Debug.LogError("Os objetos das portas não estão atribuídos no Inspector!");
+            return;
+        }
+
+        // Seleciona uma pergunta aleatória da lista
+        Question question = questions[Random.Range(0, questions.Count)];
+        questionText.text = question.textoPergunta;
+
+        // Define aleatoriamente qual porta será a correta
         bool correctOnLeft = Random.Range(0, 2) == 0;
 
+        TextMeshProUGUI correctDoorText = correctDoor.GetComponentInChildren<TextMeshProUGUI>();
+        TextMeshProUGUI incorrectDoorText = incorrectDoor.GetComponentInChildren<TextMeshProUGUI>();
+
+        if (correctDoorText == null)
+            Debug.LogError("TextMeshProUGUI não encontrado dentro de correctDoor!", correctDoor);
+
+        if (incorrectDoorText == null)
+            Debug.LogError("TextMeshProUGUI não encontrado dentro de incorrectDoor!", incorrectDoor);
+
+        if (correctDoorText == null || incorrectDoorText == null)
+        {
+            Debug.LogError("As portas não possuem um componente TextMeshProUGUI dentro!");
+            return;
+        }
+        
         if (correctOnLeft)
         {
             correctAnswerText.text = question.respostaCorreta;
             incorrectAnswerText.text = question.respostaIncorreta;
 
-            correctDoor.GetComponentInChildren<TextMeshProUGUI>().text = question.respostaCorreta;
-            incorrectDoor.GetComponentInChildren<TextMeshProUGUI>().text = question.respostaIncorreta;
+            correctDoorText.text = question.respostaCorreta;
+            incorrectDoorText.text = question.respostaIncorreta;
         }
         else
         {
             correctAnswerText.text = question.respostaIncorreta;
             incorrectAnswerText.text = question.respostaCorreta;
 
-            correctDoor.GetComponentInChildren<TextMeshProUGUI>().text = question.respostaIncorreta;
-            incorrectDoor.GetComponentInChildren<TextMeshProUGUI>().text = question.respostaCorreta;
+            correctDoorText.text = question.respostaIncorreta;
+            incorrectDoorText.text = question.respostaCorreta;
         }
 
-        Debug.Log("Pergunta exibida: " + question.textoPergunta); // Verifica se o texto da pergunta foi definido
-        Debug.Log("Resposta correta exibida: " + correctAnswerText.text); // Confirma a resposta correta
+        Debug.Log("Pergunta exibida: " + question.textoPergunta);
     }
 
     bool GetAnswerFromPlayer()
@@ -106,6 +142,7 @@ public class DoorInteraction : MonoBehaviour
         return Random.Range(0, 2) == 0;
     }
 }
+ 
 
 // Classe para armazenar perguntas e respostas
 [System.Serializable]

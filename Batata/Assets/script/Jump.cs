@@ -72,7 +72,9 @@ public class Jump : MonoBehaviour
             isGrounded = false;
             Debug.Log("Player not grounded");
         }
+       
     }
+    
 
 
 }

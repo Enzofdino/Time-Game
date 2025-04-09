@@ -21,9 +21,8 @@ public class Jump : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.J))
         {
-            jumpForce = (jumpForce == 10) ? 15: 10;
+            jumpForce = (jumpForce == 10) ? 10: 15;
             Debug.Log(jumpForce);
-            
         }
 
         // Check if the player is pressing the jump key (space bar) and is grounded

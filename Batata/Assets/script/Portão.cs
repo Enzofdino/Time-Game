@@ -6,40 +6,41 @@ public class CodigoSecreto : MonoBehaviour
     public GameObject portao;
     public GameObject[] interruptores; // Array de interruptores
     public int[] ordemCorreta;         // Sequência correta
-    public float tempoMaximo = 10f;    // Tempo para resolver o puzzle
+    public float tempoMaximo = 10f;
 
-    private int indiceAtual = 0;       // Índice da sequência atual
-    private float tempoRestante;       // Tempo restante
-    private bool resolvido = false;    // Controle de resolução
-    private GameObject interruptorAtual; // Interruptor próximo
+    private int indiceAtual = 0;
+    private float tempoRestante;
+    private bool resolvido = false;
+
+    private GameObject interruptorAtual;
 
     void Start()
     {
         tempoRestante = tempoMaximo;
-        AtualizarPortao(false); // Portão inicialmente fechado
+        AtualizarPortao(false);
     }
 
     void Update()
     {
-        if (!resolvido)
+        if (resolvido) return;
+
+        if (!Contador.isTimeFrozen)
         {
-            // Atualiza o tempo restante
-            if (!Contador.isTimeFrozen)
-            {
-                tempoRestante -= Time.deltaTime;
-            }
+            tempoRestante -= Time.deltaTime;
+        }
 
-            // Game Over se o tempo acabar
-            if (tempoRestante <= 0)
-            {
-                GameOver();
-            }
+        if (tempoRestante <= 0)
+        {
+            GameOver();
+        }
 
-            // Verifica se o jogador pressiona "E" para acionar o interruptor
-            if (interruptorAtual != null && Input.GetKeyDown(KeyCode.E))
+        // Apertar "E" para acionar
+        if (interruptorAtual != null && Input.GetKeyDown(KeyCode.E))
+        {
+            Interruptor interruptor = interruptorAtual.GetComponent<Interruptor>();
+            if (interruptor != null)
             {
-               // int id = interruptorAtual.GetComponent<Interruptor>().id;
-              //  AcionarInterruptor(id);
+                AcionarInterruptor(interruptor.id);
             }
         }
     }
@@ -48,13 +49,11 @@ public class CodigoSecreto : MonoBehaviour
     {
         if (resolvido) return;
 
-        // Verifica se o interruptor acionado está na sequência correta
         if (id == ordemCorreta[indiceAtual])
         {
             Debug.Log("Interruptor correto: " + id);
             indiceAtual++;
 
-            // Verifica se completou a sequência
             if (indiceAtual >= ordemCorreta.Length)
             {
                 PuzzleResolvido();
@@ -68,7 +67,7 @@ public class CodigoSecreto : MonoBehaviour
     }
 
     void PuzzleResolvido()
-    { 
+    {
         resolvido = true;
         AtualizarPortao(true);
         Debug.Log("Portão destravado!");
@@ -84,7 +83,10 @@ public class CodigoSecreto : MonoBehaviour
 
     void AtualizarPortao(bool abrir)
     {
-        portao.SetActive(!abrir); // Se abrir for true, o portão some
+        if (portao != null)
+        {
+            portao.SetActive(!abrir); // Se abrir for true, portão some
+        }
     }
 
     public void ResetarPuzzle()
@@ -101,11 +103,12 @@ public class CodigoSecreto : MonoBehaviour
         return tempoRestante;
     }
 
-    // Verifica se o jogador está próximo de um interruptor
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Interruptor"))
+
         {
+            Debug.Log("Entrou em contato com: " + other.name);
             interruptorAtual = other.gameObject;
             Debug.Log("Aperte 'E' para acionar o interruptor.");
         }
@@ -113,12 +116,9 @@ public class CodigoSecreto : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Interruptor"))
+        if (other.CompareTag("Interruptor") && other.gameObject == interruptorAtual)
         {
-            if (other.gameObject == interruptorAtual)
-            {
-                interruptorAtual = null;
-            }
+            interruptorAtual = null;
         }
     }
 }

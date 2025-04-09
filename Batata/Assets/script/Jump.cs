@@ -21,7 +21,7 @@ public class Jump : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.J))
         {
-            jumpForce = (jumpForce == 10) ? 10: 15;
+            jumpForce = (jumpForce == 15) ? 10: 15;
             Debug.Log(jumpForce);
         }
 

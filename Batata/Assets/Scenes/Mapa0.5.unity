@@ -33261,8 +33261,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -2498408667686837249, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: m_Size.x
+      value: 2.778565
+      objectReference: {fileID: 0}
+    - target: {fileID: -2498408667686837249, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0065128803
+      objectReference: {fileID: 0}
+    - target: {fileID: -2498408667686837249, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 917156134985063089, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
       propertyPath: m_Pivot.x
@@ -35185,13 +35193,13 @@ GameObject:
   m_Component:
   - component: {fileID: 2121400973}
   - component: {fileID: 2121400972}
-  - component: {fileID: 2121400980}
   - component: {fileID: 2121400971}
   - component: {fileID: 2121400978}
   - component: {fileID: 2121400974}
   - component: {fileID: 2121400976}
   - component: {fileID: 2121400977}
   - component: {fileID: 2121400979}
+  - component: {fileID: 2121400980}
   m_Layer: 0
   m_Name: moai
   m_TagString: Player
@@ -35460,6 +35468,7 @@ MonoBehaviour:
   - {fileID: 730822848}
   ordemCorreta: 000000000100000002000000
   tempoMaximo: 10
+  resolvido: 0
 --- !u!1 &2122751080
 GameObject:
   m_ObjectHideFlags: 0

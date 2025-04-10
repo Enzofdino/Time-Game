@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class CodigoSecreto : MonoBehaviour
 {
+  static public  CodigoSecreto instance;
+    void Awake()
+    {
+        instance = this;
+    }
     public GameObject portao;
     public GameObject[] interruptores; // Array de interruptores
     public int[] ordemCorreta;         // Sequência correta
@@ -10,7 +15,7 @@ public class CodigoSecreto : MonoBehaviour
 
     private int indiceAtual = 0;
     private float tempoRestante;
-    private bool resolvido = false;
+    public bool resolvido = false;
 
     private GameObject interruptorAtual;
 
@@ -66,7 +71,7 @@ public class CodigoSecreto : MonoBehaviour
         }
     }
 
-    void PuzzleResolvido()
+  public  void PuzzleResolvido()
     {
         resolvido = true;
         AtualizarPortao(true);

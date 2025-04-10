@@ -44,7 +44,7 @@ public class Contador : MonoBehaviour
     }        
     public void Update()
     {
-        if (ano == 10)
+        if ( CodigoSecreto.instance.resolvido == true)
         {
             era = "Medieval";
         }

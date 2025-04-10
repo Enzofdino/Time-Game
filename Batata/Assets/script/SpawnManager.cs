@@ -36,7 +36,7 @@ public class SpawnManager : MonoBehaviour
 
     void Update()
     {
-        if (Contador.instance.ano == 10 && spawnMedieval == true)
+        if (CodigoSecreto.instance.resolvido == true && spawnMedieval == true)
         {
             DestroyAllInstances();
             NextRound();

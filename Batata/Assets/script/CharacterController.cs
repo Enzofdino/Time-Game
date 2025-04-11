@@ -21,7 +21,7 @@ public class CharacterController : MonoBehaviour
         float moveY = Input.GetAxisRaw("Vertical");
 
         // Update the character's position
-        transform.Translate(new Vector3(moveX, moveY, 0) * Time.deltaTime * 6f);
+       transform.Translate(new Vector3(moveX, moveY, 0) * Time.deltaTime * 1f);
 
         // Change the sprite based on the direction
         if (moveX < 0)

@@ -35313,7 +35313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bbe88871667eea47a38e20f02f6c0e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 8
   groundCheck: {fileID: 0}
   groundLayer:
     serializedVersion: 2
@@ -35359,6 +35359,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 15
+  energyRecoveryDelay: 5
+  energy: 3
+  CanJump: 1
 --- !u!60 &2121400979
 PolygonCollider2D:
   m_ObjectHideFlags: 0

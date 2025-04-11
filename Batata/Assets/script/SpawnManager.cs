@@ -75,7 +75,7 @@ public class SpawnManager : MonoBehaviour
             do
             {
                 // Gerar uma nova posição aleatória
-                newPosition = new Vector3(Random.Range(38.61f, 106.8f), heightPoss, 1f);
+                newPosition = new Vector3(Random.Range(30.61f, 106.8f), heightPoss, 1f);
 
                 // Verificar se a posição é válida
                 validPosition = IsPositionValid(newPosition, i);

@@ -48,6 +48,7 @@ public class Espinhos : MonoBehaviour
             ativo = false;
             yield return new WaitForSeconds(tempoAlternancia1);
         }
+       
     }
 
     void OnTriggerEnter2D(Collider2D other)

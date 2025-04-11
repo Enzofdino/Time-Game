@@ -4,6 +4,11 @@ using UnityEngine.Tilemaps; // Importa suporte para Tilemaps
 
 public class PlataformaVoadora : MonoBehaviour
 {
+    static public PlataformaVoadora instance;
+    void Awake()
+    {
+        instance = this;
+    }
     [SerializeField] private float tempoVisivel = 2f;
     [SerializeField] private float tempoInvisivel = 2f;
 

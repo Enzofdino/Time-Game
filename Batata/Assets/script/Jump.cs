@@ -37,7 +37,7 @@ public class Jump : MonoBehaviour
         // Verifica se pode pular
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded && CanJump)
         {
-            int custoPulo = superJump ? 2 : 1;
+            int custoPulo = superJump ? 2 : 0;
 
             if (energy >= custoPulo)
             {

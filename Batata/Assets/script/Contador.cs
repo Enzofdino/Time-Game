@@ -37,8 +37,8 @@ public class Contador : MonoBehaviour
         hora = 0;
         tick = 0;
         dia = 0;
-        mes = 11;
-        ano = 9;
+        mes = 1;
+        ano = 1;
         era = "PréHistórica";
         
     }        
@@ -48,11 +48,11 @@ public class Contador : MonoBehaviour
         {
             era = "Medieval";
         }
-        if (ano == 11)
+        if (ano == 4)
         {
             era = "Contemporânea";
         }
-        if (ano == 12)
+        if (ano == 8)
         {
             era = "Moderna";
         }

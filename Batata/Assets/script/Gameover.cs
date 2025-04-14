@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
+
 
 public class Gameover : MonoBehaviour
 {
@@ -14,6 +16,19 @@ public class Gameover : MonoBehaviour
     void Start()
     {
         gameOverCanvas.SetActive(false); // Garante que o Canvas esteja invisível no início
+    }
+    void Update()
+    {
+        // Se o jogador apertar R, reinicia o jogo
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ReiniciarJogo();
+        }
+    }
+    public void ReiniciarJogo()
+    {
+        Time.timeScale = 1f; // Despausa o jogo
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Recarrega a cena atual
     }
 
     public void AtivarGameOver()

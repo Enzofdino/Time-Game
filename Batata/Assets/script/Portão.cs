@@ -3,21 +3,23 @@ using UnityEngine;
 
 public class CodigoSecreto : MonoBehaviour
 {
-  static public  CodigoSecreto instance;
+    public static CodigoSecreto instance;
+
     void Awake()
     {
         instance = this;
     }
+
     public GameObject portao;
-    public GameObject[] interruptores; // Array de interruptores
-    public int[] ordemCorreta;         // Sequência correta
+    public GameObject[] interruptores;
+    public int[] ordemCorreta;
     public float tempoMaximo = 10f;
 
     private int indiceAtual = 0;
     private float tempoRestante;
-    public bool resolvido = false;
-
     private GameObject interruptorAtual;
+
+    public bool resolvido = false;
 
     void Start()
     {
@@ -39,7 +41,6 @@ public class CodigoSecreto : MonoBehaviour
             GameOver();
         }
 
-        // Apertar "E" para acionar
         if (interruptorAtual != null && Input.GetKeyDown(KeyCode.E))
         {
             Interruptor interruptor = interruptorAtual.GetComponent<Interruptor>();
@@ -61,7 +62,7 @@ public class CodigoSecreto : MonoBehaviour
 
             if (indiceAtual >= ordemCorreta.Length)
             {
-                PuzzleResolvido();
+                VerificarCondicoesParaAbrir();
             }
         }
         else
@@ -71,7 +72,19 @@ public class CodigoSecreto : MonoBehaviour
         }
     }
 
-  public  void PuzzleResolvido()
+    void VerificarCondicoesParaAbrir()
+    {
+        if (Tochas.instance.temItem)
+        {
+            PuzzleResolvido();
+        }
+        else
+        {
+            Debug.Log("Você acertou os interruptores, mas ainda precisa resolver as tochas!");
+        }
+    }
+
+    public void PuzzleResolvido()
     {
         resolvido = true;
         AtualizarPortao(true);
@@ -90,7 +103,7 @@ public class CodigoSecreto : MonoBehaviour
     {
         if (portao != null)
         {
-            portao.SetActive(!abrir); // Se abrir for true, portão some
+            portao.SetActive(!abrir);
         }
     }
 
@@ -111,9 +124,7 @@ public class CodigoSecreto : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Interruptor"))
-
         {
-            Debug.Log("Entrou em contato com: " + other.name);
             interruptorAtual = other.gameObject;
             Debug.Log("Aperte 'E' para acionar o interruptor.");
         }

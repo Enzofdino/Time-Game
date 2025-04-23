@@ -1,5 +1,6 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 public class Tochas : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class Tochas : MonoBehaviour
     public Sprite tochaApagada;
     [SerializeField]
     public Sprite tochaErrada;
+    [SerializeField]
+    public GameObject itemPremioPrefab; // Item que será spawnado
+    [SerializeField]
+    public GameObject imagemDoItemUI; // Referência ao ícone no Canvas
 
     public bool temItem = false;
 
@@ -22,49 +27,62 @@ public class Tochas : MonoBehaviour
 
     private void Awake()
     {
-        quantidadeGerada = Random.Range(2, 5);
+        quantidadeGerada = 5; // Agora gera corretamente 5
         instance = this;
     }
 
-    private void Start()
+    void Start()
     {
         for (int i = 0; i < quantidadeGerada; i++)
         {
             GerarTochas(i);
         }
 
-        // Exemplo: gera uma ordem aleat�ria de �ndices
         ordemCorreta = GerarOrdemCorreta();
+        StartCoroutine(PiscarTochasNaOrdem());
     }
 
     void GerarTochas(int indice)
     {
-        GameObject novaTocha = Instantiate(tochaAcessa, new Vector3(Random.Range(-30.91f, -39.66f), -5.51f), Quaternion.identity);
-        float valorAleatorio = Random.Range(0f, 1f);
+        Vector3 pos = new Vector3(Random.Range(-39.66f, -30.91f), Random.Range(-6f, -4f), 0);
+        Debug.Log($"Instanciando tocha {indice} na posição {pos}");
+
+        GameObject novaTocha = Instantiate(tochaAcessa, pos, Quaternion.identity);
+
+        float valorAleatorio = Random.Range(5f, 6f);
         TochaData novaTochaData = new TochaData(novaTocha, valorAleatorio, indice);
 
+        // Adiciona click
         TochasClickavel clickavel = novaTocha.AddComponent<TochasClickavel>();
         clickavel.DefinirTocha(novaTochaData);
+
+        // Número visível da tocha
+        TextMesh texto = novaTocha.AddComponent<TextMesh>();
+        texto.text = indice.ToString();
+        texto.characterSize = 0.2f;
+        texto.color = Color.white;
+        texto.transform.position += new Vector3(0, 0.5f, 0);
 
         tochasGeradas.Add(novaTochaData);
     }
 
+
     List<int> GerarOrdemCorreta()
     {
-        List<int> ordem = new List<int>();
         List<int> indicesDisponiveis = new List<int>();
-
-        for (int i = 0; i < quantidadeGerada; i++)
+        for (int i = 0; i < tochasGeradas.Count; i++)
+        {
             indicesDisponiveis.Add(i);
+        }
 
-        while (ordem.Count < quantidadeGerada)
+        List<int> ordem = new List<int>();
+        while (indicesDisponiveis.Count > 0)
         {
             int rand = Random.Range(0, indicesDisponiveis.Count);
             ordem.Add(indicesDisponiveis[rand]);
             indicesDisponiveis.RemoveAt(rand);
         }
 
-        Debug.Log("Ordem correta: " + string.Join(", ", ordem));
         return ordem;
     }
 
@@ -74,18 +92,19 @@ public class Tochas : MonoBehaviour
 
         cliquesDoJogador.Add(index);
 
-        // Verifica se o clique atual est� correto
         if (cliquesDoJogador.Count <= ordemCorreta.Count)
         {
             if (ordemCorreta[cliquesDoJogador.Count - 1] == index)
             {
                 spriteRenderer.sprite = tochaApagada;
 
-                // Se finalizou com sucesso
                 if (cliquesDoJogador.Count == ordemCorreta.Count)
                 {
                     temItem = true;
                     Debug.Log("Todas tochas clicadas corretamente! Item obtido.");
+
+                    // Spawnar o item em uma posição no mapa
+                    Instantiate(itemPremioPrefab, new Vector3(-35f, -4f), Quaternion.identity);
                 }
             }
             else
@@ -94,6 +113,29 @@ public class Tochas : MonoBehaviour
                 cliquesDoJogador.Clear();
                 Debug.Log("Ordem errada. Tente novamente.");
             }
+        }
+    }
+
+    IEnumerator PiscarTochasNaOrdem()
+    {
+        foreach (int indice in ordemCorreta)
+        {
+            GameObject tocha = tochasGeradas[indice].tocha;
+            SpriteRenderer sr = tocha.GetComponent<SpriteRenderer>();
+
+            sr.sprite = tochaApagada;
+            yield return new WaitForSeconds(0.5f);
+            sr.sprite = tochaAcessa.GetComponent<SpriteRenderer>().sprite;
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
+    // Chamado quando o jogador coleta o item
+    public void MostrarItemNaUI()
+    {
+        if (imagemDoItemUI != null)
+        {
+            imagemDoItemUI.SetActive(true);
         }
     }
 }

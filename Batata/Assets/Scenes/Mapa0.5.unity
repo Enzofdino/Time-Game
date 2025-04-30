@@ -48780,6 +48780,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: porta fechada (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8078861981999513101, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2533669705825693372, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
     - {fileID: 7399210750155190761, guid: 6484485f410d8c04eb28ccf83f6426ae, type: 3}
@@ -58288,7 +58292,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1733610570
 RectTransform:
   m_ObjectHideFlags: 0
@@ -60180,12 +60184,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b14b3809c931be343b52439edb18ee6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tochaAcessa: {fileID: 8715930229336043901, guid: 1547f7efbead2c64e9ebec2c8a5dbcc9, type: 3}
+  tochaPrefab: {fileID: 2466619632342765280, guid: fdedccc910e897846bb970a50c461cd5, type: 3}
   tochaApagada: {fileID: 21300000, guid: 806578496f26b9645ae93c3797f7e688, type: 3}
   tochaErrada: {fileID: 21300000, guid: 9c0cd58839896d94396c054e9c7cbf02, type: 3}
-  itemPremioPrefab: {fileID: 0}
-  imagemDoItemUI: {fileID: 0}
+  itemPremioPrefab: {fileID: 33970013694198573, guid: 754e43d46eb16be41bc587ec5eec426c, type: 3}
+  imagemDoItemUI: {fileID: 33970013694198573, guid: 754e43d46eb16be41bc587ec5eec426c, type: 3}
   temItem: 0
+  quantidadeGerada: 100
 --- !u!4 &2122751082
 Transform:
   m_ObjectHideFlags: 0

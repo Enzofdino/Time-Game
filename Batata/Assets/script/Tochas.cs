@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class Tochas : MonoBehaviour
 {
-    [Header("Prefabs de Tochas")]
-    [SerializeField] GameObject tochaAcesaPrefab;
-    [SerializeField] GameObject tochaApagadaPrefab;
-    [SerializeField] GameObject tochaErradaPrefab;
-
-    public int quantidadeTochas = 5;
+    [Header("Prefabs de Tochas Coloridas")]
+    [SerializeField] GameObject tochaVermelhaPrefab;
+    [SerializeField] GameObject tochaAzulPrefab;
+    [SerializeField] GameObject tochaLaranjaPrefab;
+    [SerializeField] GameObject tochaAmarelaPrefab;
 
     float minX = -39.66f, maxX = -30.91f;
     float minY = -6f, maxY = -4f;
 
     List<Vector3> posicoesUsadas = new List<Vector3>();
-    List<GameObject> tochas = new List<GameObject>();
-    List<int> ordemCorreta = new List<int>();
-    List<int> cliquesDoJogador = new List<int>();
+    List<TochaClickavel> tochas = new List<TochaClickavel>();
+    List<string> ordemCorreta = new List<string>();
+    List<string> cliquesDoJogador = new List<string>();
 
     public bool portaoAberto = false;
 
@@ -32,26 +31,17 @@ public class Tochas : MonoBehaviour
         posicoesUsadas.Clear();
         tochas.Clear();
 
-        int qtdCorretas = Random.Range(1, quantidadeTochas - 1); // pelo menos 1 correta
-        int qtdErradas = Random.Range(0, quantidadeTochas - qtdCorretas);
-        int qtdApagadas = quantidadeTochas - qtdCorretas - qtdErradas;
-
-        List<string> tipos = new List<string>();
-
-        for (int i = 0; i < qtdCorretas; i++) tipos.Add("correta");
-        for (int i = 0; i < qtdErradas; i++) tipos.Add("errada");
-        for (int i = 0; i < qtdApagadas; i++) tipos.Add("apagada");
-
-        // Embaralhar tipos
-        for (int i = 0; i < tipos.Count; i++)
+        Dictionary<string, GameObject> coresPrefabs = new Dictionary<string, GameObject>()
         {
-            string temp = tipos[i];
-            int randomIndex = Random.Range(i, tipos.Count);
-            tipos[i] = tipos[randomIndex];
-            tipos[randomIndex] = temp;
-        }
+            { "vermelha", tochaVermelhaPrefab },
+            { "azul", tochaAzulPrefab },
+            { "laranja", tochaLaranjaPrefab },
+            { "amarela", tochaAmarelaPrefab }
+        };
 
-        for (int i = 0; i < quantidadeTochas; i++)
+        List<string> cores = new List<string>(coresPrefabs.Keys);
+
+        foreach (string cor in cores)
         {
             Vector3 pos;
             int tentativas = 0;
@@ -64,35 +54,14 @@ public class Tochas : MonoBehaviour
 
             posicoesUsadas.Add(pos);
 
-            GameObject prefab = null;
-            switch (tipos[i])
-            {
-                case "correta":
-                    prefab = tochaAcesaPrefab;
-                    break;
-                case "apagada":
-                    prefab = tochaApagadaPrefab;
-                    break;
-                case "errada":
-                    prefab = tochaErradaPrefab;
-                    break;
-            }
+            GameObject tocha = Instantiate(coresPrefabs[cor], pos, Quaternion.identity);
+            
 
-            GameObject tocha = Instantiate(prefab, pos, Quaternion.identity);
-            tocha.AddComponent<BoxCollider2D>();
+            TochaClickavel click = tocha.AddComponent<TochaClickavel>();
+            click.Definir(this, cor); // Agora passamos a *cor* como identificador
 
-            // Só as corretas podem ser clicadas com ordem
-            if (tipos[i] == "correta")
-            {
-                TochaClickavel click = tocha.AddComponent<TochaClickavel>();
-                click.Definir(this, i); // i será usado como índice da ordem
-                ordemCorreta.Add(i);
-            }
-
-            tochas.Add(tocha);
+            tochas.Add(click);
         }
-
-        Debug.Log("Quantidade: " + quantidadeTochas + " | Corretas: " + qtdCorretas + " | Erradas: " + qtdErradas + " | Apagadas: " + qtdApagadas);
     }
 
     bool PosicaoMuitoPerto(Vector3 novaPos)
@@ -107,26 +76,27 @@ public class Tochas : MonoBehaviour
 
     void GerarOrdemCorreta()
     {
-        // Ordem já é montada em SpawnarTochas
-        // Embaralhar a ordem correta
+        ordemCorreta = new List<string> { "vermelha", "azul", "laranja", "amarela" };
+
         for (int i = 0; i < ordemCorreta.Count; i++)
         {
             int rand = Random.Range(i, ordemCorreta.Count);
-            int temp = ordemCorreta[i];
+            string temp = ordemCorreta[i];
             ordemCorreta[i] = ordemCorreta[rand];
             ordemCorreta[rand] = temp;
         }
 
-        Debug.Log("Ordem correta: " + string.Join(", ", ordemCorreta));
+        Debug.Log("Ordem correta: " + string.Join(" -> ", ordemCorreta));
     }
 
-    public void TentarClicar(int index)
+    public void TentarClicar(string cor)
     {
         if (portaoAberto) return;
 
-        cliquesDoJogador.Add(index);
+        cliquesDoJogador.Add(cor);
 
-        if (ordemCorreta[cliquesDoJogador.Count - 1] == index)
+        int idx = cliquesDoJogador.Count - 1;
+        if (ordemCorreta[idx] == cor)
         {
             if (cliquesDoJogador.Count == ordemCorreta.Count)
             {
@@ -139,15 +109,31 @@ public class Tochas : MonoBehaviour
             Debug.Log("Erro! Ordem incorreta.");
             ResetarTochas();
         }
+        if (ordemCorreta[idx] == cor)
+        {
+            Debug.Log("Cor correta clicada: " + cor);
+
+            if (cliquesDoJogador.Count == ordemCorreta.Count)
+            {
+                Debug.Log("Desafio completo! Portão pode ser aberto.");
+                portaoAberto = true;
+            }
+        }
+        else
+        {
+            Debug.Log("Erro! Ordem incorreta. Clicou: " + cor + ", mas esperava: " + ordemCorreta[idx]);
+            ResetarTochas();
+        }
     }
+
 
     void ResetarTochas()
     {
         cliquesDoJogador.Clear();
         ordemCorreta.Clear();
 
-        foreach (GameObject t in tochas)
-            Destroy(t);
+        foreach (TochaClickavel tocha in tochas)
+            Destroy(tocha.gameObject);
 
         SpawnarTochas();
         GerarOrdemCorreta();

@@ -56436,7 +56436,7 @@ GameObject:
   - component: {fileID: 1569806805}
   - component: {fileID: 1569806804}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Parede
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59729,10 +59729,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b14b3809c931be343b52439edb18ee6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tochaAcesaPrefab: {fileID: 2466619632342765280, guid: fdedccc910e897846bb970a50c461cd5, type: 3}
-  tochaApagadaPrefab: {fileID: 6728338094599989813, guid: ad462e5c760fc164a8f20541ccf4bc3f, type: 3}
-  tochaErradaPrefab: {fileID: 8715930229336043901, guid: 1547f7efbead2c64e9ebec2c8a5dbcc9, type: 3}
-  quantidadeTochas: 5
+  tochaVermelhaPrefab: {fileID: 9014934475140523228, guid: 21a7e9757f43c4e4ea94fd7d738cf79c, type: 3}
+  tochaAzulPrefab: {fileID: 8916343065973263989, guid: 74eb1f2ae192f3743b02512c2208faeb, type: 3}
+  tochaLaranjaPrefab: {fileID: 6689458624453712385, guid: 5c37e5a82fc8247499eea6da7143ab46, type: 3}
+  tochaAmarelaPrefab: {fileID: 2234586217345000955, guid: 29efe72eb874b174d847124f3a414ef5, type: 3}
   portaoAberto: 0
 --- !u!1 &2128636372
 GameObject:

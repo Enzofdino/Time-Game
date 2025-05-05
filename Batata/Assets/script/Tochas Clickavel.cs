@@ -3,16 +3,18 @@ using UnityEngine;
 public class TochaClickavel : MonoBehaviour
 {
     private Tochas gerenciador;
-    private int indice;
+    private string cor;
 
-    public void Definir(Tochas t, int idx)
+    // Define o gerenciador e a cor da tocha
+    public void Definir(Tochas t, string corTocha)
     {
         gerenciador = t;
-        indice = idx;
+        cor = corTocha;
     }
 
+    // Ao clicar na tocha, tenta ativar com base na cor
     void OnMouseDown()
     {
-        gerenciador.TentarClicar(indice);
+        gerenciador.TentarClicar(cor);
     }
 }

@@ -60,10 +60,7 @@ public class CodigoSecreto : MonoBehaviour
             Debug.Log("Interruptor correto: " + id);
             indiceAtual++;
 
-            if (indiceAtual >= ordemCorreta.Length)
-            {
-                VerificarCondicoesParaAbrir();
-            }
+         
         }
         else
         {
@@ -72,17 +69,7 @@ public class CodigoSecreto : MonoBehaviour
         }
     }
 
-    void VerificarCondicoesParaAbrir()
-    {
-        if (Tochas.instance.temItem)
-        {
-            PuzzleResolvido();
-        }
-        else
-        {
-            Debug.Log("Você acertou os interruptores, mas ainda precisa resolver as tochas!");
-        }
-    }
+   
 
     public void PuzzleResolvido()
     {

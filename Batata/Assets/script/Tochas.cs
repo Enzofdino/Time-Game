@@ -1,43 +1,57 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
 
 public class Tochas : MonoBehaviour
 {
-    public static Tochas instance;
+    [Header("Prefabs de Tochas")]
+    [SerializeField] GameObject tochaAcesaPrefab;
+    [SerializeField] GameObject tochaApagadaPrefab;
+    [SerializeField] GameObject tochaErradaPrefab;
 
-    [SerializeField] GameObject tochaPrefab;
-    [SerializeField] Sprite tochaApagada;
-    [SerializeField] Sprite tochaErrada;
-    [SerializeField] GameObject itemPremioPrefab;
-    [SerializeField] GameObject imagemDoItemUI;
+    public int quantidadeTochas = 5;
 
-    public bool temItem = false;
+    float minX = -39.66f, maxX = -30.91f;
+    float minY = -6f, maxY = -4f;
 
-    private List<TochaData> tochasGeradas = new List<TochaData>();
-    private List<int> ordemCorreta = new List<int>();
-    private List<int> cliquesDoJogador = new List<int>();
+    List<Vector3> posicoesUsadas = new List<Vector3>();
+    List<GameObject> tochas = new List<GameObject>();
+    List<int> ordemCorreta = new List<int>();
+    List<int> cliquesDoJogador = new List<int>();
 
-   public int quantidadeGerada = 5;
-    float minX = -39.66f, maxX = -30.91f, minY = -6f, maxY = -4f;
-
-    private void Awake()
-    {
-        instance = this;
-    }
+    public bool portaoAberto = false;
 
     void Start()
     {
-        GerarTochas();
-        ordemCorreta = GerarOrdemCorreta();
-        StartCoroutine(PiscarTochasNaOrdem());
+        SpawnarTochas();
+        GerarOrdemCorreta();
     }
 
-    void GerarTochas()
+    void SpawnarTochas()
     {
-        List<Vector3> posicoesUsadas = new List<Vector3>();
+        posicoesUsadas.Clear();
+        tochas.Clear();
 
-        for (int i = 0; i < quantidadeGerada; i++)
+        int qtdCorretas = Random.Range(1, quantidadeTochas - 1); // pelo menos 1 correta
+        int qtdErradas = Random.Range(0, quantidadeTochas - qtdCorretas);
+        int qtdApagadas = quantidadeTochas - qtdCorretas - qtdErradas;
+
+        List<string> tipos = new List<string>();
+
+        for (int i = 0; i < qtdCorretas; i++) tipos.Add("correta");
+        for (int i = 0; i < qtdErradas; i++) tipos.Add("errada");
+        for (int i = 0; i < qtdApagadas; i++) tipos.Add("apagada");
+
+        // Embaralhar tipos
+        for (int i = 0; i < tipos.Count; i++)
+        {
+            string temp = tipos[i];
+            int randomIndex = Random.Range(i, tipos.Count);
+            tipos[i] = tipos[randomIndex];
+            tipos[randomIndex] = temp;
+        }
+
+        for (int i = 0; i < quantidadeTochas; i++)
         {
             Vector3 pos;
             int tentativas = 0;
@@ -46,109 +60,96 @@ public class Tochas : MonoBehaviour
             {
                 pos = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), 0);
                 tentativas++;
-            } while (PosicaoMuitoPerto(pos, posicoesUsadas) && tentativas < 100);
+            } while (PosicaoMuitoPerto(pos) && tentativas < 100);
 
             posicoesUsadas.Add(pos);
-            GameObject novaTocha = Instantiate(tochaPrefab, pos, Quaternion.identity);
-            TochaData novaTochaData = new TochaData(novaTocha, Random.Range(5f, 6f), i);
 
-            // Adiciona click
-            TochasClickavel clickavel = novaTocha.AddComponent<TochasClickavel>();
-            clickavel.DefinirTocha(novaTochaData);
+            GameObject prefab = null;
+            switch (tipos[i])
+            {
+                case "correta":
+                    prefab = tochaAcesaPrefab;
+                    break;
+                case "apagada":
+                    prefab = tochaApagadaPrefab;
+                    break;
+                case "errada":
+                    prefab = tochaErradaPrefab;
+                    break;
+            }
 
-            // Número visível
-            TextMesh texto = novaTocha.AddComponent<TextMesh>();
-            texto.text = i.ToString();
-            texto.characterSize = 0.2f;
-            texto.color = Color.white;
-            texto.transform.position += new Vector3(0, 0.5f, 0);
+            GameObject tocha = Instantiate(prefab, pos, Quaternion.identity);
+            tocha.AddComponent<BoxCollider2D>();
 
-            tochasGeradas.Add(novaTochaData);
+            // Só as corretas podem ser clicadas com ordem
+            if (tipos[i] == "correta")
+            {
+                TochaClickavel click = tocha.AddComponent<TochaClickavel>();
+                click.Definir(this, i); // i será usado como índice da ordem
+                ordemCorreta.Add(i);
+            }
+
+            tochas.Add(tocha);
         }
+
+        Debug.Log("Quantidade: " + quantidadeTochas + " | Corretas: " + qtdCorretas + " | Erradas: " + qtdErradas + " | Apagadas: " + qtdApagadas);
     }
 
-    bool PosicaoMuitoPerto(Vector3 nova, List<Vector3> existentes)
+    bool PosicaoMuitoPerto(Vector3 novaPos)
     {
-        foreach (var pos in existentes)
+        foreach (Vector3 pos in posicoesUsadas)
         {
-            if (Vector3.Distance(nova, pos) < 1.2f)
+            if (Vector3.Distance(novaPos, pos) < 1.5f)
                 return true;
         }
         return false;
     }
 
-    List<int> GerarOrdemCorreta()
+    void GerarOrdemCorreta()
     {
-        List<int> indices = new List<int>();
-        for (int i = 0; i < tochasGeradas.Count; i++)
-            indices.Add(i);
-
-        List<int> ordem = new List<int>();
-        while (indices.Count > 0)
+        // Ordem já é montada em SpawnarTochas
+        // Embaralhar a ordem correta
+        for (int i = 0; i < ordemCorreta.Count; i++)
         {
-            int rand = Random.Range(0, indices.Count);
-            ordem.Add(indices[rand]);
-            indices.RemoveAt(rand);
+            int rand = Random.Range(i, ordemCorreta.Count);
+            int temp = ordemCorreta[i];
+            ordemCorreta[i] = ordemCorreta[rand];
+            ordemCorreta[rand] = temp;
         }
-        return ordem;
+
+        Debug.Log("Ordem correta: " + string.Join(", ", ordemCorreta));
     }
 
-    public void TochaClicada(int index, SpriteRenderer sr)
+    public void TentarClicar(int index)
     {
-        if (temItem) return;
+        if (portaoAberto) return;
 
         cliquesDoJogador.Add(index);
+
         if (ordemCorreta[cliquesDoJogador.Count - 1] == index)
         {
-            sr.sprite = tochaApagada;
-
             if (cliquesDoJogador.Count == ordemCorreta.Count)
             {
-                temItem = true;
-                Debug.Log("Sequência correta! Item liberado.");
-                Instantiate(itemPremioPrefab, new Vector3(-35f, -4f), Quaternion.identity);
+                Debug.Log("Desafio completo! Portão pode ser aberto.");
+                portaoAberto = true;
             }
         }
         else
         {
-            sr.sprite = tochaErrada;
-            cliquesDoJogador.Clear();
-            Debug.Log("Sequência errada. Reiniciando...");
+            Debug.Log("Erro! Ordem incorreta.");
+            ResetarTochas();
         }
     }
 
-    IEnumerator PiscarTochasNaOrdem()
+    void ResetarTochas()
     {
-        foreach (int idx in ordemCorreta)
-        {
-            GameObject tocha = tochasGeradas[idx].tocha;
-            SpriteRenderer sr = tocha.GetComponent<SpriteRenderer>();
+        cliquesDoJogador.Clear();
+        ordemCorreta.Clear();
 
-            sr.sprite = tochaApagada;
-            yield return new WaitForSeconds(0.5f);
-            sr.sprite = tochaPrefab.GetComponent<SpriteRenderer>().sprite;
-            yield return new WaitForSeconds(0.5f);
-        }
-    }
+        foreach (GameObject t in tochas)
+            Destroy(t);
 
-    public void MostrarItemNaUI()
-    {
-        if (imagemDoItemUI != null)
-            imagemDoItemUI.SetActive(true);
-    }
-}
-
-[System.Serializable]
-public class TochaData
-{
-    public GameObject tocha;
-    public float valor;
-    public int index;
-
-    public TochaData(GameObject tocha, float valor, int index)
-    {
-        this.tocha = tocha;
-        this.valor = valor;
-        this.index = index;
+        SpawnarTochas();
+        GerarOrdemCorreta();
     }
 }

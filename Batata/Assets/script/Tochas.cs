@@ -9,6 +9,7 @@ public class Tochas : MonoBehaviour
     [SerializeField] GameObject tochaAzulPrefab;
     [SerializeField] GameObject tochaLaranjaPrefab;
     [SerializeField] GameObject tochaAmarelaPrefab;
+    [SerializeField] GameObject itemUI;
 
     float minX = -39.66f, maxX = -30.91f;
     float minY = -6f, maxY = -4f;
@@ -17,6 +18,7 @@ public class Tochas : MonoBehaviour
     List<TochaClickavel> tochas = new List<TochaClickavel>();
     List<string> ordemCorreta = new List<string>();
     List<string> cliquesDoJogador = new List<string>();
+   
 
     public bool portaoAberto = false;
 
@@ -24,6 +26,8 @@ public class Tochas : MonoBehaviour
     {
         SpawnarTochas();
         GerarOrdemCorreta();
+        StartCoroutine(MostrarOrdem());
+
     }
 
     void SpawnarTochas()
@@ -76,18 +80,12 @@ public class Tochas : MonoBehaviour
 
     void GerarOrdemCorreta()
     {
-        ordemCorreta = new List<string> { "vermelha", "azul", "laranja", "amarela" };
+        ordemCorreta = new List<string> { "vermelha", "azul", "amarela", "laranja" };
+    
 
-        for (int i = 0; i < ordemCorreta.Count; i++)
-        {
-            int rand = Random.Range(i, ordemCorreta.Count);
-            string temp = ordemCorreta[i];
-            ordemCorreta[i] = ordemCorreta[rand];
-            ordemCorreta[rand] = temp;
-        }
-
-        Debug.Log("Ordem correta: " + string.Join(" -> ", ordemCorreta));
+    Debug.Log("Ordem correta: " + string.Join(" -> ", ordemCorreta));
     }
+
 
     public void TentarClicar(string cor)
     {
@@ -124,6 +122,14 @@ public class Tochas : MonoBehaviour
             Debug.Log("Erro! Ordem incorreta. Clicou: " + cor + ", mas esperava: " + ordemCorreta[idx]);
             ResetarTochas();
         }
+        if (cliquesDoJogador.Count == ordemCorreta.Count)
+        {
+            Debug.Log("Desafio completo! Portão pode ser aberto.");
+            portaoAberto = true;
+
+            itemUI.SetActive(true); // Ativa o item
+        }
+
     }
 
 
@@ -138,4 +144,28 @@ public class Tochas : MonoBehaviour
         SpawnarTochas();
         GerarOrdemCorreta();
     }
+    public void MostrarOrdem()
+    {
+        StartCoroutine(PiscarTochasNaOrdem());
+    }
+
+    IEnumerator PiscarTochasNaOrdem()
+    {
+        foreach (string cor in ordemCorreta)
+        {
+            TochaClickavel tocha = tochas.Find(t => t.GetCor() == cor);
+            if (tocha != null)
+            {
+                yield return StartCoroutine(tocha.Piscar());
+                yield return new WaitForSeconds(0.2f);
+            }
+        }
+    }
+
+
+
+
+
+
+
 }

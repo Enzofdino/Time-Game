@@ -1,20 +1,42 @@
 using UnityEngine;
+using System.Collections;
+
 
 public class TochaClickavel : MonoBehaviour
 {
-    private Tochas gerenciador;
-    private string cor;
+    string cor;
+    Tochas gerenciador;
 
-    // Define o gerenciador e a cor da tocha
-    public void Definir(Tochas t, string corTocha)
+    public void Definir(Tochas t, string c)
     {
         gerenciador = t;
-        cor = corTocha;
+        cor = c;
     }
 
-    // Ao clicar na tocha, tenta ativar com base na cor
+    public string GetCor()
+    {
+        return cor;
+    }
+
     void OnMouseDown()
     {
-        gerenciador.TentarClicar(cor);
+        if (gerenciador != null)
+        {
+            gerenciador.TentarClicar(cor);
+        }
+        else
+        {
+            Debug.LogError("Gerenciador de tochas não foi definido!");
+        }
+    }
+
+    public IEnumerator Piscar()
+    {
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        Color corOriginal = sr.color;
+
+        sr.color = Color.white;
+        yield return new WaitForSeconds(0.2f);
+        sr.color = corOriginal;
     }
 }

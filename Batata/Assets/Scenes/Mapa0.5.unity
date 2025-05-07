@@ -59733,6 +59733,7 @@ MonoBehaviour:
   tochaAzulPrefab: {fileID: 8916343065973263989, guid: 74eb1f2ae192f3743b02512c2208faeb, type: 3}
   tochaLaranjaPrefab: {fileID: 6689458624453712385, guid: 5c37e5a82fc8247499eea6da7143ab46, type: 3}
   tochaAmarelaPrefab: {fileID: 2234586217345000955, guid: 29efe72eb874b174d847124f3a414ef5, type: 3}
+  itemUI: {fileID: 33970013694198573, guid: 754e43d46eb16be41bc587ec5eec426c, type: 3}
   portaoAberto: 0
 --- !u!1 &2128636372
 GameObject:
@@ -59745,6 +59746,7 @@ GameObject:
   - component: {fileID: 2128636373}
   - component: {fileID: 2128636375}
   - component: {fileID: 2128636374}
+  - component: {fileID: 2128636376}
   m_Layer: 0
   m_Name: Fundo
   m_TagString: Untagged
@@ -61120,7 +61122,7 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7294118}
   m_Origin: {x: -56, y: -11, z: 0}
   m_Size: {x: 56, y: 18, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -61142,6 +61144,42 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &2128636376
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128636372}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0
+  m_UseDelaunayMesh: 0
 --- !u!1 &2129262401
 GameObject:
   m_ObjectHideFlags: 0

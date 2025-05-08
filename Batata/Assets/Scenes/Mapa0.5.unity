@@ -59746,6 +59746,7 @@ GameObject:
   - component: {fileID: 2128636373}
   - component: {fileID: 2128636375}
   - component: {fileID: 2128636374}
+  - component: {fileID: 2128636377}
   - component: {fileID: 2128636376}
   m_Layer: 0
   m_Name: Fundo
@@ -61122,7 +61123,7 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 0.7294118}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -56, y: -11, z: 0}
   m_Size: {x: 56, y: 18, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -61180,6 +61181,20 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!114 &2128636377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128636372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4c0ddf49d6fd214881adeaa3b3aac7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilemapRenderer: {fileID: 2128636374}
+  transparencia: 0.3
 --- !u!1 &2129262401
 GameObject:
   m_ObjectHideFlags: 0

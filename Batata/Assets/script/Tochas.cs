@@ -26,7 +26,7 @@ public class Tochas : MonoBehaviour
     {
         SpawnarTochas();
         GerarOrdemCorreta();
-        StartCoroutine(MostrarOrdem());
+        
 
     }
 
@@ -144,9 +144,9 @@ public class Tochas : MonoBehaviour
         SpawnarTochas();
         GerarOrdemCorreta();
     }
-    public void MostrarOrdem()
+    public IEnumerator MostrarOrdem()
     {
-        StartCoroutine(PiscarTochasNaOrdem());
+        yield return StartCoroutine(PiscarTochasNaOrdem());
     }
 
     IEnumerator PiscarTochasNaOrdem()

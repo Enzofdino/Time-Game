@@ -1,11 +1,10 @@
+﻿using System.Collections;
 using UnityEngine;
-using System.Collections;
-
 
 public class TochaClickavel : MonoBehaviour
 {
-    string cor;
-    Tochas gerenciador;
+    private Tochas gerenciador;
+    private string cor;
 
     public void Definir(Tochas t, string c)
     {
@@ -13,30 +12,25 @@ public class TochaClickavel : MonoBehaviour
         cor = c;
     }
 
-    public string GetCor()
+    public string GetCor() // ← ESSA PARTE É IMPORTANTE
     {
         return cor;
     }
 
-    void OnMouseDown()
+    private void OnMouseDown()
     {
         if (gerenciador != null)
         {
             gerenciador.TentarClicar(cor);
-        }
-        else
-        {
-            Debug.LogError("Gerenciador de tochas n�o foi definido!");
         }
     }
 
     public IEnumerator Piscar()
     {
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        Color corOriginal = sr.color;
-
+        Color originalColor = sr.color;
         sr.color = Color.white;
-        yield return new WaitForSeconds(0.2f);
-        sr.color = corOriginal;
+        yield return new WaitForSeconds(0.5f);
+        sr.color = originalColor;
     }
 }

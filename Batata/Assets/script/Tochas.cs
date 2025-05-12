@@ -11,8 +11,8 @@ public class Tochas : MonoBehaviour
     [SerializeField] GameObject tochaAmarelaPrefab;
     [SerializeField] GameObject itemUI;
 
-    float minX = -39.66f, maxX = -30.91f;
-    float minY = -6f, maxY = -4f;
+    float minX = -24.176f, maxX = -31.86f;
+    float minY = -10.297f, maxY = -10.297f;
 
     List<Vector3> posicoesUsadas = new List<Vector3>();
     List<TochaClickavel> tochas = new List<TochaClickavel>();

@@ -9,6 +9,7 @@ TagManager:
   - Porta
   - Interruptor
   - Tocha
+  - Parede
   layers:
   - Default
   - TransparentFX

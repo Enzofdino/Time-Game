@@ -10,6 +10,7 @@ TagManager:
   - Interruptor
   - Tocha
   - Parede
+  - Chave
   layers:
   - Default
   - TransparentFX

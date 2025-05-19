@@ -10,7 +10,7 @@ public class CodigoSecreto : MonoBehaviour
         instance = this;
     }
 
-    public GameObject portao;
+    [Header("Puzzle dos Interruptores")]
     public GameObject[] interruptores;
     public int[] ordemCorreta;
     public float tempoMaximo = 10f;
@@ -19,16 +19,45 @@ public class CodigoSecreto : MonoBehaviour
     private float tempoRestante;
     private GameObject interruptorAtual;
 
+    [Header("Portão Final")]
+    public GameObject portao;
+    public SpriteRenderer portaoRenderer;
+    public Collider2D portaoCollider;
+    public GameObject mensagemAbrirPortaoUI;
+
+    private bool jogadorPertoDoPortao = false;
+    private GameObject jogador;
+
+    [Header("Chave")]
+    public GameObject chavePrefab; // <- arraste o prefab da chave aqui no inspetor
+    private GameObject chaveInstanciada;
+    public bool temChave = false;
+
     public bool resolvido = false;
 
     void Start()
     {
         tempoRestante = tempoMaximo;
         AtualizarPortao(false);
+
+        if (mensagemAbrirPortaoUI != null)
+            mensagemAbrirPortaoUI.SetActive(false);
+
+        // Spawn da chave no início do jogo
+        if (chavePrefab != null)
+        {
+            chaveInstanciada = Instantiate(chavePrefab, new Vector3(60.36f, 17.54f, 0), Quaternion.identity);
+        }
     }
 
     void Update()
     {
+        if (resolvido && jogadorPertoDoPortao && temChave && Input.GetKeyDown(KeyCode.E))
+        {
+            AbrirPortaoFinal();
+            return;
+        }
+
         if (resolvido) return;
 
         if (!Contador.isTimeFrozen)
@@ -60,7 +89,10 @@ public class CodigoSecreto : MonoBehaviour
             Debug.Log("Interruptor correto: " + id);
             indiceAtual++;
 
-         
+            if (indiceAtual >= ordemCorreta.Length)
+            {
+                PuzzleResolvido();
+            }
         }
         else
         {
@@ -69,13 +101,11 @@ public class CodigoSecreto : MonoBehaviour
         }
     }
 
-   
-
     public void PuzzleResolvido()
     {
         resolvido = true;
-        AtualizarPortao(true);
-        Debug.Log("Portão destravado!");
+        AtualizarPortao(false); // Portão ainda fechado, só será aberto com a chave
+        Debug.Log("Puzzle resolvido! Agora pegue a chave e vá até o portão.");
     }
 
     void GameOver()
@@ -83,15 +113,25 @@ public class CodigoSecreto : MonoBehaviour
         resolvido = false;
         indiceAtual = 0;
         tempoRestante = tempoMaximo;
-       
+        Debug.Log("Tempo esgotado. Puzzle reiniciado.");
     }
 
     void AtualizarPortao(bool abrir)
     {
-        if (portao != null)
-        {
-            portao.SetActive(abrir);
-        }
+        if (portaoRenderer != null)
+            portaoRenderer.enabled = !abrir;
+
+        if (portaoCollider != null)
+            portaoCollider.isTrigger = abrir;
+    }
+
+    void AbrirPortaoFinal()
+    {
+        Debug.Log("Portão final aberto com a chave!");
+        AtualizarPortao(true);
+
+        if (mensagemAbrirPortaoUI != null)
+            mensagemAbrirPortaoUI.SetActive(false);
     }
 
     public void ResetarPuzzle()
@@ -115,6 +155,25 @@ public class CodigoSecreto : MonoBehaviour
             interruptorAtual = other.gameObject;
             Debug.Log("Aperte 'E' para acionar o interruptor.");
         }
+
+        if (other.CompareTag("Player"))
+        {
+            if (resolvido && temChave)
+            {
+                jogadorPertoDoPortao = true;
+                jogador = other.gameObject;
+
+                if (mensagemAbrirPortaoUI != null)
+                    mensagemAbrirPortaoUI.SetActive(true);
+            }
+        }
+
+        if (other.CompareTag("Chave"))
+        {
+            temChave = true;
+            Destroy(other.gameObject);
+            Debug.Log("Chave coletada!");
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -122,6 +181,14 @@ public class CodigoSecreto : MonoBehaviour
         if (other.CompareTag("Interruptor") && other.gameObject == interruptorAtual)
         {
             interruptorAtual = null;
+        }
+
+        if (other.CompareTag("Player"))
+        {
+            jogadorPertoDoPortao = false;
+
+            if (mensagemAbrirPortaoUI != null)
+                mensagemAbrirPortaoUI.SetActive(false);
         }
     }
 }

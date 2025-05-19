@@ -10,6 +10,8 @@ public class Tochas : MonoBehaviour
     [SerializeField] GameObject tochaLaranjaPrefab;
     [SerializeField] GameObject tochaAmarelaPrefab;
     [SerializeField] GameObject itemUI;
+    [SerializeField] private Collider2D portaoCollider;
+
 
     float minX = -24.176f, maxX = -31.86f;
     float minY = -10.297f, maxY = -10.297f;
@@ -18,8 +20,8 @@ public class Tochas : MonoBehaviour
     List<TochaClickavel> tochas = new List<TochaClickavel>();
     List<string> ordemCorreta = new List<string>();
     List<string> cliquesDoJogador = new List<string>();
-   
 
+    [SerializeField] private SpriteRenderer portaoRenderer;
     public bool portaoAberto = false;
 
     void Start()
@@ -92,21 +94,8 @@ public class Tochas : MonoBehaviour
         if (portaoAberto) return;
 
         cliquesDoJogador.Add(cor);
-
         int idx = cliquesDoJogador.Count - 1;
-        if (ordemCorreta[idx] == cor)
-        {
-            if (cliquesDoJogador.Count == ordemCorreta.Count)
-            {
-                Debug.Log("Desafio completo! Portão pode ser aberto.");
-                portaoAberto = true;
-            }
-        }
-        else
-        {
-            Debug.Log("Erro! Ordem incorreta.");
-            ResetarTochas();
-        }
+
         if (ordemCorreta[idx] == cor)
         {
             Debug.Log("Cor correta clicada: " + cor);
@@ -115,6 +104,14 @@ public class Tochas : MonoBehaviour
             {
                 Debug.Log("Desafio completo! Portão pode ser aberto.");
                 portaoAberto = true;
+
+                itemUI.SetActive(true);
+
+                if (portaoRenderer != null)
+                    portaoRenderer.enabled = false;
+
+                if (portaoCollider != null)
+                    portaoCollider.isTrigger = true; // Permite o jogador passar
             }
         }
         else
@@ -122,15 +119,9 @@ public class Tochas : MonoBehaviour
             Debug.Log("Erro! Ordem incorreta. Clicou: " + cor + ", mas esperava: " + ordemCorreta[idx]);
             ResetarTochas();
         }
-        if (cliquesDoJogador.Count == ordemCorreta.Count)
-        {
-            Debug.Log("Desafio completo! Portão pode ser aberto.");
-            portaoAberto = true;
-
-            itemUI.SetActive(true); // Ativa o item
-        }
-
     }
+
+
 
 
     void ResetarTochas()

@@ -83,14 +83,14 @@ public class CodigoSecreto : MonoBehaviour
         resolvido = false;
         indiceAtual = 0;
         tempoRestante = tempoMaximo;
-        Debug.Log("Tempo esgotado ou sequência errada! Reiniciando...");
+       
     }
 
     void AtualizarPortao(bool abrir)
     {
         if (portao != null)
         {
-            portao.SetActive(!abrir);
+            portao.SetActive(abrir);
         }
     }
 

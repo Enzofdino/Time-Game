@@ -52,11 +52,7 @@ public class Jump : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            Debug.Log("Sem energia para pular!");
-
-        }
+       
     }
 
 

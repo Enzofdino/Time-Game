@@ -188,7 +188,7 @@ public class CodigoSecreto : MonoBehaviour
             jogadorPertoDoPortao = false;
 
             if (mensagemAbrirPortaoUI != null)
-                mensagemAbrirPortaoUI.SetActive(false);
+                mensagemAbrirPortaoUI.SetActive(true);
         }
     }
 }

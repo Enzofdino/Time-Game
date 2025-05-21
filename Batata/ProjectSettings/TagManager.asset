@@ -6,11 +6,11 @@ TagManager:
   tags:
   - Ground
   - Structure
-  - Porta
   - Interruptor
   - Tocha
   - Parede
   - Chave
+  - Portao
   layers:
   - Default
   - TransparentFX

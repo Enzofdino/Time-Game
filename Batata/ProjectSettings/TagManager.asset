@@ -9,8 +9,11 @@ TagManager:
   - Interruptor
   - Tocha
   - Parede
-  - Chave
   - Portao
+  - Porta
+  - PortaoTrigger
+  - Chave1
+  - Chave2
   layers:
   - Default
   - TransparentFX

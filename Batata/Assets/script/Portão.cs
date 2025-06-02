@@ -29,6 +29,7 @@ public class CodigoSecreto : MonoBehaviour
     private GameObject jogador;
 
     [Header("Chaves")]
+    
     public GameObject chave1Prefab;
     public GameObject chave2Prefab;
 
@@ -49,10 +50,7 @@ public class CodigoSecreto : MonoBehaviour
         if (mensagemAbrirPortaoUI != null)
             mensagemAbrirPortaoUI.SetActive(false);
 
-        if (chave1Prefab != null)
-        {
-            chave1Instanciada = Instantiate(chave1Prefab, new Vector3(-27.64f, -17.49f, 0), Quaternion.identity);
-        }
+       
 
         if (chave2Prefab != null)
         {
@@ -64,6 +62,7 @@ public class CodigoSecreto : MonoBehaviour
 
     void Update()
     {
+        
         if (resolvido)
         {
             VerificarInteracaoPortao();
@@ -197,52 +196,33 @@ public class CodigoSecreto : MonoBehaviour
         return tempoRestante;
     }
 
+    public void SpawnarChave1()
+    {
+        Debug.Log("SpawnarChave1 chamado!");
+        Instantiate(chave1Prefab, new Vector3(0, 0, 0), Quaternion.identity);
+    }
+
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Interruptor"))
         {
             interruptorAtual = other.gameObject;
-            Debug.Log("Aperte 'E' para acionar o interruptor.");
-        }
-        else if (other.CompareTag("PortaoTrigger"))
-        {
-            jogadorPertoDoPortao = true;
 
-            if (resolvido && temChave1 && temChave2)
-
-            {
+            if (mensagemAbrirPortaoUI != null)
                 mensagemAbrirPortaoUI.SetActive(true);
-                Debug.Log("Aperte 'E' para abrir o portão.");
-            }
         }
-        else if (other.CompareTag("Chave1"))
-        {
-            temChave1 = true;
-            Destroy(other.gameObject);
-            Debug.Log("Chave 1 coletada!");
-        }
-        else if (other.CompareTag("Chave2"))
-        {
-            temChave2 = true;
-            Destroy(other.gameObject);
-            Debug.Log("Chave 2 coletada!");
-        }
-
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Interruptor") && other.gameObject == interruptorAtual)
+        if (other.CompareTag("Interruptor"))
         {
             interruptorAtual = null;
-        }
-
-        if (other.CompareTag("PortaoTrigger"))
-        {
-            jogadorPertoDoPortao = false;
 
             if (mensagemAbrirPortaoUI != null)
                 mensagemAbrirPortaoUI.SetActive(false);
         }
     }
+
 }

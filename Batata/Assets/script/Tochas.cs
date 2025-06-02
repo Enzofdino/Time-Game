@@ -23,6 +23,7 @@ public class Tochas : MonoBehaviour
 
     [SerializeField] private SpriteRenderer portaoRenderer;
     public bool portaoAberto = false;
+    private bool chaveJaSpawnada = false;
 
     void Start()
     {
@@ -31,6 +32,11 @@ public class Tochas : MonoBehaviour
         
 
     }
+
+
+   
+
+
 
     void SpawnarTochas()
     {
@@ -101,7 +107,8 @@ public class Tochas : MonoBehaviour
             Debug.Log("Cor correta clicada: " + cor);
 
             if (cliquesDoJogador.Count == ordemCorreta.Count)
-            {
+            {     
+              
                 Debug.Log("Desafio completo! Portão pode ser aberto.");
                 portaoAberto = true;
 
@@ -111,8 +118,13 @@ public class Tochas : MonoBehaviour
                     portaoRenderer.enabled = false;
 
                 if (portaoCollider != null)
-                    portaoCollider.isTrigger = true; // Permite o jogador passar
+                    portaoCollider.isTrigger = true;
+
+                CodigoSecreto.instance.SpawnarChave1();
+                Debug.Log("Chamando SpawnarChave1 diretamente");
+
             }
+
         }
         else
         {

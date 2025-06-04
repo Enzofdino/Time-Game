@@ -13,8 +13,8 @@ public class Tochas : MonoBehaviour
     [SerializeField] private Collider2D portaoCollider;
 
 
-    float minX = -24.176f, maxX = -31.86f;
-    float minY = -10.297f, maxY = -10.297f;
+    float minX = -24.241f, maxX = -33.792f;
+    float minY = -9.3f, maxY = -9.3f;
 
     List<Vector3> posicoesUsadas = new List<Vector3>();
     List<TochaClickavel> tochas = new List<TochaClickavel>();
@@ -23,7 +23,7 @@ public class Tochas : MonoBehaviour
 
     [SerializeField] private SpriteRenderer portaoRenderer;
     public bool portaoAberto = false;
-    private bool chaveJaSpawnada = false;
+    
 
     void Start()
     {
@@ -120,8 +120,7 @@ public class Tochas : MonoBehaviour
                 if (portaoCollider != null)
                     portaoCollider.isTrigger = true;
 
-                CodigoSecreto.instance.SpawnarChave1();
-                Debug.Log("Chamando SpawnarChave1 diretamente");
+               
 
             }
 
